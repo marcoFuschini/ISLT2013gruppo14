@@ -32,7 +32,7 @@ public class FanDevice implements IFanDevice {
 	}
 
 	public void incSpeed(){
-
+		int a=1;
 	}
 
 	public String receiveCommand(){
