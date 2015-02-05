@@ -12,7 +12,7 @@ import it.unibo.IngSW.common.interfaces.IInputDisplay;
 public class ButtonInput extends JComponent implements IInputDisplay {
 
 	public ButtonInput(){
-
+		
 	}
 
 	public void finalize() throws Throwable {

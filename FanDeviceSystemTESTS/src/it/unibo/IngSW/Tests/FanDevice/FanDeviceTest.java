@@ -1,13 +1,17 @@
 package it.unibo.IngSW.Tests.FanDevice;
 
 import static org.junit.Assert.*;
+import it.unibo.IngSW.FanDevice.FanDevice;
 
 import org.junit.Test;
 
 public class FanDeviceTest {
+	
+	FanDevice dev=new FanDevice();
 
 	@Test
 	public void testAddSensor() {
+		
 		fail("Not yet implemented");
 	}
 

@@ -13,8 +13,8 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class FanDevice implements IFanDevice {
 
-	public IComunication m_IComunication;
-	public ISensor m_ISensor;
+	protected IComunication serverComunicator;
+	protected ISensor[] sensors;
 
 	public FanDevice(){
 

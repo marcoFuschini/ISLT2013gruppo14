@@ -4,6 +4,7 @@ import it.unibo.IngSW.Viewer.interfaces.IViewer;
 import it.unibo.IngSW.common.ClientComunicator;
 import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
+import it.unibo.IngSW.common.interfaces.ISensorDisplay;
 
 /**
  * @author Marco
@@ -37,6 +38,18 @@ public class Viewer implements IViewer {
 
 	@Override
 	public void showState(ISensorData stateData) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addSensorDisplay(ISensorDisplay elementDisplay) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeSensorDisplay(ISensorDisplay elementDisplay) {
 		// TODO Auto-generated method stub
 		
 	}
