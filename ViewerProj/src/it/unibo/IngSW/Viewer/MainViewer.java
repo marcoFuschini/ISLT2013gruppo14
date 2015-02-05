@@ -1,5 +1,5 @@
-package Project;
-import DomainModel.IViewer;
+package it.unibo.IngSW.Viewer;
+import it.unibo.IngSW.Viewer.interfaces.IViewer;
 
 /**
  * @author Marco

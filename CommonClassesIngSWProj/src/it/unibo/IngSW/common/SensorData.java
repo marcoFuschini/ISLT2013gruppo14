@@ -1,5 +1,5 @@
-package Project;
-import DomainModel.ISensorData;
+package it.unibo.IngSW.common;
+import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
  * @author Marco

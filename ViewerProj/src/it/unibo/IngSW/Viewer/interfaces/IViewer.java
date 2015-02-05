@@ -1,5 +1,7 @@
-package DomainModel;
-import Project.SensorData;
+package it.unibo.IngSW.Viewer.interfaces;
+
+import it.unibo.IngSW.common.interfaces.IDisplay;
+import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
  * @author Marco
@@ -8,20 +10,20 @@ import Project.SensorData;
  */
 public interface IViewer {
 
-	public IDisplay m_IDisplay;
+	public IDisplay m_IDisplay=null;
 
-	public SensorData[] receiveData();
+	public ISensorData[] receiveData();
 
 	/**
 	 * 
 	 * @param data
 	 */
-	public void showSensorData(SensorData[] data);
+	public void showSensorData(ISensorData[] data);
 
 	/**
 	 * 
 	 * @param stateData
 	 */
-	public void showState(SensorData stateData);
+	public void showState(ISensorData stateData);
 
 }

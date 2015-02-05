@@ -1,5 +1,6 @@
-package Project;
-import DomainModel.IControlCmdConsole;
+package it.unibo.IngSW.ControlUnit;
+
+import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 
 /**
  * @author Marco
@@ -16,12 +17,10 @@ public class ControlCmdConsole implements IControlCmdConsole {
 
 	}
 
-	public void receiveUserInput(){
+	public String receiveUserInput(){
+		return null;
 
 	}
 
-	public void sendCommand(){
-
-	}
 
 }

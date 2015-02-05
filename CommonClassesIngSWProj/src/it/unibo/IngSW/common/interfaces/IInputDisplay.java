@@ -1,5 +1,4 @@
 package it.unibo.IngSW.common.interfaces;
-import DomainModel.IElementDisplay;
 
 /**
  * Serve solo per inserire l'indirizzo di connessione, non si useranno componenti

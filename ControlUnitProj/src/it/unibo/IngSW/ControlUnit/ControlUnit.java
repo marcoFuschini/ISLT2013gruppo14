@@ -1,13 +1,17 @@
-package Project;
-import DomainModel.IControlCmdConsole;
-import DomainModel.IDisplay;
+package it.unibo.IngSW.ControlUnit;
+import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
+import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
+import it.unibo.IngSW.common.ClientComunicator;
+import it.unibo.IngSW.common.SensorData;
+import it.unibo.IngSW.common.interfaces.IDisplay;
+import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
  * @author Marco
  * @version 1.0
  * @created 04-feb-2015 17.02.59
  */
-public class ControlUnit {
+public class ControlUnit implements IControlUnit{
 
 	public ClientComunicator m_ClientComunicator;
 	public IControlCmdConsole m_IControlCmdConsole;
@@ -21,36 +25,34 @@ public class ControlUnit {
 
 	}
 
-	public string receiveCommand(){
-		return "";
-	}
-
-	public SensorData[] receiveData(){
+	@Override
+	public ISensorData[] receiveData() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/**
-	 * 
-	 * @param cmd
-	 */
-	public void sendCommand(string cmd){
-
+	@Override
+	public String receiveInput() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	/**
-	 * 
-	 * @param data
-	 */
-	public showSensorData(SensorData[] data){
-
+	@Override
+	public void sendCommand(String command) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * 
-	 * @param state
-	 */
-	public void showState(SensorData state){
+	@Override
+	public void showSensorData(ISensorData[] data) {
+		// TODO Auto-generated method stub
+		
+	}
 
+	@Override
+	public void showState(ISensorData state) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

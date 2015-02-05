@@ -1,6 +1,7 @@
 package it.unibo.IngSW.FanDevice.interfaces;
 
 import it.unibo.IngSW.FanDevice.FanSpeed;
+import it.unibo.IngSW.common.interfaces.ISensorData;
 
 
 /**
@@ -20,13 +21,13 @@ public interface IFanDevice {
 
 	public String receiveCommand();
 
-	public SensorData[] receiveSensorData();
+	public ISensorData[] receiveSensorData();
 
 	/**
 	 * 
 	 * @param dataToSend
 	 */
-	public void sendData(SensorData[] dataToSend);
+	public void sendData(ISensorData[] dataToSend);
 
 	/**
 	 * 

@@ -7,7 +7,7 @@ package it.unibo.IngSW.common.interfaces;
  */
 public interface IDisplay {
 
-	public IElementDisplay m_IElementDisplay;
+	public IElementDisplay m_IElementDisplay=null;
 
 	/**
 	 * 

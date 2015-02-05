@@ -2,6 +2,8 @@ package it.unibo.IngSW.FanDevice;
 
 import it.unibo.IngSW.FanDevice.interfaces.IFanDevice;
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
+import it.unibo.IngSW.common.interfaces.IComunication;
+import it.unibo.IngSW.common.interfaces.ISensorData;
 
 
 /**
@@ -42,7 +44,7 @@ public class FanDevice implements IFanDevice {
 		return "";
 	}
 
-	public SensorData[] receiveSensorData(){
+	public ISensorData[] receiveSensorData(){
 		return null;
 	}
 
@@ -58,7 +60,7 @@ public class FanDevice implements IFanDevice {
 	 * 
 	 * @param dataToSend
 	 */
-	public void sendData(SensorData[] dataToSend){
+	public void sendData(ISensorData[] dataToSend){
 
 	}
 

@@ -1,4 +1,4 @@
-package Project;
+package it.unibo.IngSW.ControlUnit;
 
 /**
  * @author Marco

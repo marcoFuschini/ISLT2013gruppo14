@@ -1,4 +1,9 @@
-package Project;
+package it.unibo.IngSW.Viewer;
+
+import it.unibo.IngSW.Viewer.interfaces.IViewer;
+import it.unibo.IngSW.common.ClientComunicator;
+import it.unibo.IngSW.common.interfaces.IDisplay;
+import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
  * @author Marco
@@ -7,8 +12,8 @@ package Project;
  */
 public class Viewer implements IViewer {
 
-	public ClientComunicator m_ClientComunicator;
-	public IDisplay m_IDisplay;
+	public ClientComunicator m_ClientComunicator=null;
+	public IDisplay m_IDisplay=null;
 
 	public Viewer(){
 
@@ -18,24 +23,22 @@ public class Viewer implements IViewer {
 
 	}
 
-	public SensorData[] receiveData(){
+	@Override
+	public ISensorData[] receiveData() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	/**
-	 * 
-	 * @param data
-	 */
-	public void showSensorData(SensorData[] data){
-
+	@Override
+	public void showSensorData(ISensorData[] data) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	/**
-	 * 
-	 * @param stateData
-	 */
-	public void showState(SensorData stateData){
-
+	@Override
+	public void showState(ISensorData stateData) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

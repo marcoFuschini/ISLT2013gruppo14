@@ -1,5 +1,4 @@
 package it.unibo.IngSW.common.interfaces;
-import DomainModel.IElementDisplay;
 
 /**
  * @author Marco

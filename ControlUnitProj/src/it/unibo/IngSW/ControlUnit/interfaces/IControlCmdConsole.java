@@ -7,6 +7,6 @@ package it.unibo.IngSW.ControlUnit.interfaces;
  */
 public interface IControlCmdConsole {
 
-	public string receiveUserInput();
+	public String receiveUserInput();
 
 }

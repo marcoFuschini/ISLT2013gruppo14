@@ -1,4 +1,6 @@
-package Project;
+package it.unibo.IngSW.ControlUnit;
+
+import it.unibo.IngSW.common.interfaces.IInputDisplay;
 
 /**
  * @author Fabio

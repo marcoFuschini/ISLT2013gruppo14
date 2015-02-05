@@ -1,4 +1,4 @@
-package Project;
+package it.unibo.IngSW.common;
 
 import it.unibo.IngSW.common.interfaces.IComunication;
 

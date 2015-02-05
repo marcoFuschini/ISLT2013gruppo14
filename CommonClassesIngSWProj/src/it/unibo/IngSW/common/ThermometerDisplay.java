@@ -1,6 +1,8 @@
-package Project;
+package it.unibo.IngSW.common;
 
 import it.unibo.IngSW.common.interfaces.ISensorDisplay;
+
+import javax.swing.JComponent;
 
 /**
  * @author Marco

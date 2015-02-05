@@ -1,5 +1,7 @@
 package it.unibo.IngSW.FanDevice;
 
+import it.unibo.IngSW.common.interfaces.IComunication;
+
 /**
  * @author Marco
  * @version 1.0

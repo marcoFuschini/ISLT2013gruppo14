@@ -1,6 +1,8 @@
-package Project;
-import DomainModel.IElementDisplay;
-import DomainModel.IDisplay;
+package it.unibo.IngSW.common;
+import it.unibo.IngSW.common.interfaces.IDisplay;
+import it.unibo.IngSW.common.interfaces.IElementDisplay;
+
+import javax.swing.JFrame;
 
 /**
  * @author Marco

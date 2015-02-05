@@ -1,4 +1,6 @@
-package Project;
+package it.unibo.IngSW.common;
+
+import javax.swing.JComponent;
 
 import it.unibo.IngSW.common.interfaces.IInputDisplay;
 

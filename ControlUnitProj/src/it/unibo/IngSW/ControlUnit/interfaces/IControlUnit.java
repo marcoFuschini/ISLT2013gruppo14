@@ -1,5 +1,8 @@
 package it.unibo.IngSW.ControlUnit.interfaces;
 
+import it.unibo.IngSW.common.interfaces.IDisplay;
+import it.unibo.IngSW.common.interfaces.ISensorData;
+
 /**
  * @author Fabio
  * @version 1.0
@@ -7,18 +10,18 @@ package it.unibo.IngSW.ControlUnit.interfaces;
  */
 public interface IControlUnit {
 
-	public IDisplay m_IDisplay;
-	public IControlCmdConsole m_IControlCmdConsole;
+	public IDisplay m_IDisplay=null;
+	public IControlCmdConsole m_IControlCmdConsole=null;
 
 	public ISensorData[] receiveData();
 
-	public string receiveInput();
+	public String receiveInput();
 
 	/**
 	 * 
 	 * @param command
 	 */
-	public void sendCommand(string command);
+	public void sendCommand(String command);
 
 	/**
 	 * 
