@@ -1,6 +1,4 @@
 package Project;
-import DomainModel.IViewer;
-import DomainModel.IDisplay;
 
 /**
  * @author Marco
