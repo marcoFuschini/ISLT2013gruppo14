@@ -13,9 +13,7 @@ public class FanDeviceTest {
 
 	@Test
 	public void testDecSpeed() {
-		Object l=null;
-		assertNull(l);
-		//fail("Not yet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
