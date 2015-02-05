@@ -1,4 +1,4 @@
-package it.unibo.IngSW.FanDevice;
+package it.unibo.IngSW.FanDevice.interfaces;
 
 /**
  * @author Marco

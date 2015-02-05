@@ -1,5 +1,7 @@
 package it.unibo.IngSW.FanDevice;
 
+import it.unibo.IngSW.FanDevice.interfaces.IActuator;
+
 /**
  * @author Fabio
  * @version 1.0

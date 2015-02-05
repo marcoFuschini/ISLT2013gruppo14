@@ -1,5 +1,7 @@
 package it.unibo.IngSW.FanDevice;
 
+import it.unibo.IngSW.FanDevice.interfaces.IFanDevice;
+
 
 /**
  * @author Marco
