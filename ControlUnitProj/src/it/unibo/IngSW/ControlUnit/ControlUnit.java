@@ -2,7 +2,6 @@ package it.unibo.IngSW.ControlUnit;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
 import it.unibo.IngSW.common.ClientComunicator;
-import it.unibo.IngSW.common.SensorData;
 import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
