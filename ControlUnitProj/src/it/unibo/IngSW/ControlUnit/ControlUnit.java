@@ -3,6 +3,7 @@ import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
 import it.unibo.IngSW.common.ClientComunicator;
 import it.unibo.IngSW.common.interfaces.IDisplay;
+import it.unibo.IngSW.common.interfaces.IElementDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
@@ -50,6 +51,18 @@ public class ControlUnit implements IControlUnit{
 
 	@Override
 	public void showState(ISensorData state) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addElementDisplay(IElementDisplay elementDisplay) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeElementDisplay(IElementDisplay elementDisplay) {
 		// TODO Auto-generated method stub
 		
 	}

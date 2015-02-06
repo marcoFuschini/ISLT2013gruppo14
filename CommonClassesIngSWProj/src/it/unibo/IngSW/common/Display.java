@@ -25,7 +25,7 @@ public class Display extends JFrame implements IDisplay {
 	 * 
 	 * @param el
 	 */
-	public void addSensorDisplay(IElementDisplay el){
+	public void addElementDisplay(IElementDisplay el){
 
 	}
 
@@ -33,7 +33,7 @@ public class Display extends JFrame implements IDisplay {
 	 * 
 	 * @param sensorName
 	 */
-	public void removeSensorDisplay(String sensorName){
+	public void removeElementDisplay(String sensorName){
 
 	}
 

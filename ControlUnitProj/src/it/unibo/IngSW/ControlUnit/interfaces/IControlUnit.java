@@ -1,6 +1,7 @@
 package it.unibo.IngSW.ControlUnit.interfaces;
 
 import it.unibo.IngSW.common.interfaces.IDisplay;
+import it.unibo.IngSW.common.interfaces.IElementDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
@@ -34,5 +35,8 @@ public interface IControlUnit {
 	 * @param state
 	 */
 	public void showState(ISensorData state);
+	
+	public void addElementDisplay(IElementDisplay elementDisplay);
+	public void removeElementDisplay(IElementDisplay elementDisplay);
 
 }

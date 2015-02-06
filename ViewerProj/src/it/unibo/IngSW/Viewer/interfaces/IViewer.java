@@ -2,6 +2,7 @@ package it.unibo.IngSW.Viewer.interfaces;
 
 import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
+import it.unibo.IngSW.common.interfaces.ISensorDisplay;
 
 /**
  * @author Marco
@@ -25,5 +26,8 @@ public interface IViewer {
 	 * @param stateData
 	 */
 	public void showState(ISensorData stateData);
-
+	
+	public void addSensorDisplay(ISensorDisplay elementDisplay);
+	public void removeSensorDisplay(ISensorDisplay elementDisplay);
+	
 }
