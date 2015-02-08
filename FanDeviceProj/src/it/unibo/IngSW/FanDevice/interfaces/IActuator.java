@@ -1,5 +1,4 @@
 package it.unibo.IngSW.FanDevice.interfaces;
-
 import it.unibo.IngSW.FanDevice.FanSpeed;
 
 /**

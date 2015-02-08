@@ -1,8 +1,8 @@
 package it.unibo.IngSW.common;
 
-import javax.swing.JComponent;
-
 import it.unibo.IngSW.common.interfaces.IInputDisplay;
+
+import javax.swing.JComponent;
 
 /**
  * @author Marco
@@ -12,7 +12,7 @@ import it.unibo.IngSW.common.interfaces.IInputDisplay;
 public class ButtonInput extends JComponent implements IInputDisplay {
 
 	public ButtonInput(){
-		
+
 	}
 
 	public void finalize() throws Throwable {

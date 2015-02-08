@@ -1,13 +1,13 @@
 package it.unibo.IngSW.FanDevice;
-
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
+import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
  * @author Marco
  * @version 1.0
  * @created 04-feb-2015 17.03.02
  */
-public class Tachometer implements ISensor{
+public class Tachometer implements ISensor {
 
 	public Tachometer(){
 
