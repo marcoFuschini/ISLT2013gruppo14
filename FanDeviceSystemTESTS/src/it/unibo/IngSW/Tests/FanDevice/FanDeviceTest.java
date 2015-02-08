@@ -1,17 +1,33 @@
 package it.unibo.IngSW.Tests.FanDevice;
 
 import static org.junit.Assert.*;
-import it.unibo.IngSW.FanDevice.FanDevice;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class FanDeviceTest {
-	
-	FanDevice dev=new FanDevice();
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
 
 	@Test
 	public void testAddSensor() {
-		
 		fail("Not yet implemented");
 	}
 
@@ -41,12 +57,7 @@ public class FanDeviceTest {
 	}
 
 	@Test
-	public void testSendData() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetSpeed() {
+	public void testSendDataSensorDataArray() {
 		fail("Not yet implemented");
 	}
 
@@ -57,6 +68,16 @@ public class FanDeviceTest {
 
 	@Test
 	public void testStop() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSetSpeed() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testSendDataISensorDataArray() {
 		fail("Not yet implemented");
 	}
 
