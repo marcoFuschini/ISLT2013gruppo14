@@ -1,21 +1,14 @@
 package it.unibo.IngSW.ControlUnit;
-import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
-import it.unibo.IngSW.common.ClientComunicator;
-import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.IElementDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
  * @author Marco
  * @version 1.0
- * @created 04-feb-2015 17.02.59
+ * @created 08-feb-2015 17.14.02
  */
-public class ControlUnit implements IControlUnit{
-
-	public ClientComunicator m_ClientComunicator;
-	public IControlCmdConsole m_IControlCmdConsole;
-	public IDisplay m_IDisplay;
+public class ControlUnit implements IControlUnit {
 
 	public ControlUnit(){
 
@@ -25,46 +18,61 @@ public class ControlUnit implements IControlUnit{
 
 	}
 
-	@Override
-	public ISensorData[] receiveData() {
-		// TODO Auto-generated method stub
+	/**
+	 * 
+	 * @param elementDisplay
+	 */
+	public void addElementDisplay(IElementDisplay elementDisplay){
+
+	}
+
+	public boolean isAlive(){
+		return false;
+	}
+
+	public ISensorData[] receiveData(){
 		return null;
 	}
 
-	@Override
-	public String receiveInput() {
-		// TODO Auto-generated method stub
-		return null;
+	public String receiveInput(){
+		return "";
 	}
 
-	@Override
-	public void sendCommand(String command) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * 
+	 * @param displayName
+	 */
+	public void removeElementDisplay(String displayName){
+
 	}
 
-	@Override
-	public void showSensorData(ISensorData[] data) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * 
+	 * @param cmd
+	 */
+	public void sendCommand(String cmd){
+
 	}
 
-	@Override
-	public void showState(ISensorData state) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * 
+	 * @param data
+	 */
+	public void showSensorData(ISensorData[] data){
+
 	}
 
-	@Override
-	public void addElementDisplay(IElementDisplay elementDisplay) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * 
+	 * @param state
+	 */
+	public void showState(ISensorData state){
+
 	}
 
-	@Override
-	public void removeElementDisplay(IElementDisplay elementDisplay) {
-		// TODO Auto-generated method stub
-		
+	public void turnOff(){
+
 	}
+
 
 }

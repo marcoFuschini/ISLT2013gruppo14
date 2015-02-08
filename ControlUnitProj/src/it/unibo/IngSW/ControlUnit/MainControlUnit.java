@@ -1,13 +1,14 @@
 package it.unibo.IngSW.ControlUnit;
+import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
 
 /**
  * @author Marco
  * @version 1.0
- * @created 04-feb-2015 17.03.01
+ * @created 08-feb-2015 17.14.05
  */
 public class MainControlUnit {
 
-	public ControlUnit m_ControlUnit;
+	public IControlUnit m_IControlUnit;
 
 	public MainControlUnit(){
 
@@ -17,7 +18,11 @@ public class MainControlUnit {
 
 	}
 
-	public static void main(){
+	/**
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args){
 
 	}
 

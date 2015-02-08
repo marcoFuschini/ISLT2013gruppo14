@@ -5,7 +5,7 @@ import it.unibo.IngSW.common.interfaces.IInputDisplay;
 /**
  * @author Fabio
  * @version 1.0
- * @created 05-feb-2015 16.28.19
+ * @created 08-feb-2015 17.14.05
  */
 public class PhysicalButton implements IInputDisplay {
 

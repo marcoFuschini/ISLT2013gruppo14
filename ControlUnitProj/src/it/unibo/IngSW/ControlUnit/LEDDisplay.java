@@ -5,7 +5,7 @@ import it.unibo.IngSW.common.interfaces.ISensorDisplay;
 /**
  * @author Marco
  * @version 1.0
- * @created 04-feb-2015 17.03.01
+ * @created 08-feb-2015 17.14.05
  */
 public class LEDDisplay implements ISensorDisplay {
 
