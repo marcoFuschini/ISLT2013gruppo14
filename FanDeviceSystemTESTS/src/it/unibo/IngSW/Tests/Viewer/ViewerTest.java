@@ -2,9 +2,14 @@ package it.unibo.IngSW.Tests.Viewer;
 
 import static org.junit.Assert.*;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ViewerTest {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
 
 	@Test
 	public void testReceiveData() {
