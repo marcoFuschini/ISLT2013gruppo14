@@ -13,13 +13,13 @@ public interface IDisplay {
 	 * 
 	 * @param el
 	 */
-	public void addElementDisplay(IElementDisplay el);
+	public void addSensorDisplay(IElementDisplay el);
 
 	/**
 	 * 
 	 * @param sensorName
 	 */
-	public void removeElementDisplay(String sensorName);
+	public void removeSensorDisplay(String sensorName);
 
 	/**
 	 * 

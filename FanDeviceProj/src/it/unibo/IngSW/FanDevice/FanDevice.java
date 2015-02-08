@@ -2,9 +2,9 @@ package it.unibo.IngSW.FanDevice;
 
 import it.unibo.IngSW.FanDevice.interfaces.IFanDevice;
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
+import it.unibo.IngSW.common.SensorData;
 import it.unibo.IngSW.common.interfaces.IComunication;
 import it.unibo.IngSW.common.interfaces.ISensorData;
-
 
 /**
  * @author Marco
@@ -13,8 +13,8 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class FanDevice implements IFanDevice {
 
-	protected IComunication serverComunicator;
-	protected ISensor[] sensors;
+	public IComunication m_IComunication;
+	public ISensor m_ISensor;
 
 	public FanDevice(){
 
@@ -44,7 +44,7 @@ public class FanDevice implements IFanDevice {
 		return "";
 	}
 
-	public ISensorData[] receiveSensorData(){
+	public SensorData[] receiveSensorData(){
 		return null;
 	}
 
@@ -60,7 +60,7 @@ public class FanDevice implements IFanDevice {
 	 * 
 	 * @param dataToSend
 	 */
-	public void sendData(ISensorData[] dataToSend){
+	public void sendData(SensorData[] dataToSend){
 
 	}
 
@@ -68,9 +68,6 @@ public class FanDevice implements IFanDevice {
 	 * 
 	 * @param speed
 	 */
-	public void setSpeed(FanSpeed speed){
-
-	}
 
 	public void start(){
 
@@ -78,6 +75,18 @@ public class FanDevice implements IFanDevice {
 
 	public void stop(){
 
+	}
+
+	@Override
+	public void setSpeed(FanSpeed speed) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sendData(ISensorData[] dataToSend) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
