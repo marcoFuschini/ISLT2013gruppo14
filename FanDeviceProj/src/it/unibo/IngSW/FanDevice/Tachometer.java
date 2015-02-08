@@ -29,4 +29,10 @@ public class Tachometer implements ISensor {
 
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,5 +1,8 @@
 package it.unibo.IngSW.FanDevice;
 
+import java.util.ArrayList;
+import java.util.concurrent.ArrayBlockingQueue;
+
 import it.unibo.IngSW.FanDevice.interfaces.IPassiveSensor;
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
 import it.unibo.IngSW.common.interfaces.ISensorData;
@@ -10,10 +13,12 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  * @created 04-feb-2015 17.03.01
  */
 public class PassivePoller implements ISensor {
+	
+	public static final int DT=1500;//1.5 sec di attesa per la lettura dei sensori
 
-	public IPassiveSensor m_IPassiveSensor;
+	public ArrayList<IPassiveSensor> m_IPassiveSensor;
 
-	public PassivePoller(){
+	public PassivePoller(ArrayBlockingQueue<ISensorData[]> dataBuffer){
 
 	}
 
@@ -26,7 +31,7 @@ public class PassivePoller implements ISensor {
 	 * @param newSensor
 	 */
 	public void addSensor(IPassiveSensor newSensor){
-
+		
 	}
 
 	/**
@@ -46,6 +51,12 @@ public class PassivePoller implements ISensor {
 
 	public void pause(){
 
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 
