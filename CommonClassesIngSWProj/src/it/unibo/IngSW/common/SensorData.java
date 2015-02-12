@@ -11,8 +11,9 @@ public class SensorData implements ISensorData {
 	public String sensorName;
 	public String sensorValue;
 
-	public SensorData(){
-
+	public SensorData(String name,String value){
+		sensorName=name;
+		sensorValue=value;
 	}
 
 	public void finalize() throws Throwable {

@@ -10,7 +10,7 @@ import java.util.concurrent.ArrayBlockingQueue;
  * @created 04-feb-2015 17.03.00
  */
 public interface ISensor extends Runnable{
-	
+		
 	public void kill();
 
 	public void pause();
