@@ -11,8 +11,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import it.unibo.IngSW.Tests.CLASSES.PhysicalButton;
+import it.unibo.IngSW.Tests.CLASSES.HybridButton;
 import it.unibo.IngSW.Tests.CLASSES.PhysicalLed;
+import it.unibo.IngSW.Tests.CLASSES.TruePhysicalButton;
 import it.unibo.IngSW.Tests.CLASSES.interfaces.IButton;
 import it.unibo.IngSW.Tests.CLASSES.interfaces.ILed;
 
@@ -23,7 +24,8 @@ import org.junit.Test;
 
 public class PhysicalComponentsTEST {
 
-	private IButton button = new PhysicalButton();
+	private TruePhysicalButton tbutton = new TruePhysicalButton('o');
+	private IButton button = new HybridButton("(Barra Spazziatrice)",tbutton);
 	private ILed led = new PhysicalLed();
 
 	private JFrame frame = new JFrame();
@@ -42,11 +44,14 @@ public class PhysicalComponentsTEST {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		frame.setContentPane(contentPane);
-		contentPane.add((JButton) button, BorderLayout.CENTER);
+		//contentPane.add((JButton) button, BorderLayout.CENTER);
+		frame.addKeyListener(tbutton);
+		button=tbutton;
 		contentPane.add(text, BorderLayout.NORTH);
 		contentPane.add((JLabel) led, BorderLayout.EAST);
 
 		frame.setVisible(true);
+		frame.requestFocusInWindow();
 	}
 
 	@Test
@@ -85,7 +90,6 @@ public class PhysicalComponentsTEST {
 			scrivi("Premere il tasto quando il LED si accende");
 			Thread.sleep(2000);
 			assertTrue(!button.isPressed());
-			Thread.sleep(1000);
 			led.turnOn();
 			Thread.sleep(2000);
 			assertTrue(button.isPressed());
