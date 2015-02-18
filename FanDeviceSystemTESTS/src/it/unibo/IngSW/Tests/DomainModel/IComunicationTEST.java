@@ -1,39 +1,42 @@
 package it.unibo.IngSW.Tests.DomainModel;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
+import it.unibo.IngSW.Tests.CLASSES.Communication;
+import it.unibo.IngSW.Tests.CLASSES.interfaces.ICommunicator;
 
-import java.util.concurrent.Semaphore;
-
-import org.junit.AfterClass;
 import org.junit.Test;
 
 public class IComunicationTEST {
 
-	ICommunication server, client,client2;
+	ICommunicator server, client,client2;
 
 	@Test
 	public void test() {
 		server=new Communication();
 		client=new Communication();
 		client2=new Communication();
-		int cid,cid2;
+		int cid,cid2=0;
 		Thread st = new Thread(new Runnable() {
 			@Override
 			public void run() {
+				int rcid=0;
+				int rcid2=0;
 				try{
-					int cid=server.connect("server",10001);
-					int cid2=server.connect("server",10001);
-					assertEquals("sono2",server.read(cid2));
-					assertEquals("sono1", server.read(cid));
-					assertTrue(server.write(cid,"sei1"));
-					assertTrue(server.write(cid2,"sei2"));
-					server.disconnect(cid);
+					rcid=server.connect("server",10001);
+					rcid2=server.connect("server",10001);
+					assertEquals("sono2",server.read(rcid2));
+					assertEquals("sono1", server.read(rcid));
+					server.write(rcid,"sei1");
+					server.write(rcid2,"sei2");
+					server.disconnect(rcid);
 				}catch(Exception e){
 					e.printStackTrace();
 					fail("Server error");
 				}
 				try{
-					String s=server.read(cid2);
+					String s=server.read(rcid2);
 				}finally{
 					fail("Server disconnect error");
 				}
@@ -65,7 +68,7 @@ public class IComunicationTEST {
 			
 		}
 		try{
-			client.write(100);
+			client.write(100,"ciao");
 			fail("write wrong cid");
 		}catch(Exception e){
 			
@@ -76,7 +79,7 @@ public class IComunicationTEST {
 		}catch(Exception e){
 			
 		}
-		long pre,post;
+		long pre=0,post;
 		try{
 			pre=System.currentTimeMillis();
 			client.connect("127.0.0.1",10001);
@@ -90,8 +93,8 @@ public class IComunicationTEST {
 		try{
 			cid=client.connect("127.0.0.1",10001);
 			cid2=client2.connect("127.0.0.1",10001);
-			assertTrue(client.write(cid,"sono1"));
-			assertTrue(client2.write(cid2,"sono2"));
+			client.write(cid,"sono1");
+			client2.write(cid2,"sono2");
 			assertEquals("sei2",client2.read(cid2));
 			assertEquals("sei1", client.read(cid));
 			client2.disconnect(cid2);

@@ -1,11 +1,6 @@
 package it.unibo.IngSW.Tests.FanDevice;
 
-import static org.junit.Assert.*;
-
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.Semaphore;
-
-import it.unibo.IngSW.FanDevice.FanDevice;
+import static org.junit.Assert.fail;
 import it.unibo.IngSW.FanDevice.FanSpeed;
 import it.unibo.IngSW.FanDevice.interfaces.IActuator;
 import it.unibo.IngSW.FanDevice.interfaces.IFanDevice;
@@ -13,9 +8,10 @@ import it.unibo.IngSW.FanDevice.interfaces.ISensor;
 import it.unibo.IngSW.common.SensorData;
 import it.unibo.IngSW.common.interfaces.IComunication;
 
-import org.junit.After;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.Semaphore;
+
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

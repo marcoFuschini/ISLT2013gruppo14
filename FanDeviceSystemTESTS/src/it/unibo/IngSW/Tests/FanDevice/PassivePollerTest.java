@@ -1,18 +1,14 @@
 package it.unibo.IngSW.Tests.FanDevice;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
+import it.unibo.IngSW.FanDevice.PassivePoller;
+import it.unibo.IngSW.FanDevice.interfaces.IPassiveSensor;
+import it.unibo.IngSW.common.interfaces.ISensorData;
 
 import java.util.concurrent.ArrayBlockingQueue;
 
-import it.unibo.IngSW.FanDevice.PassivePoller;
-import it.unibo.IngSW.FanDevice.interfaces.IPassiveSensor;
-import it.unibo.IngSW.FanDevice.interfaces.ISensor;
-import it.unibo.IngSW.common.interfaces.ISensorData;
-
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class PassivePollerTest {

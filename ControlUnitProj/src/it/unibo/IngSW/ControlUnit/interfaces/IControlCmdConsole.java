@@ -5,7 +5,7 @@ package it.unibo.IngSW.ControlUnit.interfaces;
  * @version 1.0
  * @created 08-feb-2015 17.14.03
  */
-public interface IControlCmdConsole {
+public interface IControlCmdConsole extends Runnable {
 
 	public String receiveUserInput();
 

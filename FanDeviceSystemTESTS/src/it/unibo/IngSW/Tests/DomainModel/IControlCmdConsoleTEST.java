@@ -1,10 +1,7 @@
 package it.unibo.IngSW.Tests.DomainModel;
 
-import static org.junit.Assert.*;
-
-import java.util.Timer;
-import java.util.concurrent.Semaphore;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import it.unibo.IngSW.ControlUnit.ControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.FanDevice.FanSpeed;
@@ -12,11 +9,11 @@ import it.unibo.IngSW.FanDevice.FanSpeed;
 import org.junit.Test;
 
 public class IControlCmdConsoleTEST {
-
+//DEPRECATO
 	IControlCmdConsole cmd=new ControlCmdConsole();
 	
 	@Test
-	public void test() {
+	public void test() {/*
 		String com;
 		cmd.start();
 		com=cmd.readCommand();
@@ -56,7 +53,7 @@ public class IControlCmdConsoleTEST {
 		t.start();
 		Thread.sleep(5000);
 		cmd.incSpeed();
-		
+		*/
 	}
 
 }

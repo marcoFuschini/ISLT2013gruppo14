@@ -20,4 +20,10 @@ public class ControlCmdConsole implements IControlCmdConsole {
 		return "";
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
