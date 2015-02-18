@@ -14,25 +14,25 @@ public interface ICommunicator {
 	 * @param ip
 	 * @param port
 	 */
-	public int connect(String ip, int port);
+	public int connect(String ip, int port) throws Exception;
 
 	/**
 	 * 
 	 * @param connectionId
 	 */
-	public void disconnect(int connectionId);
+	public void disconnect(int connectionId) throws Exception;
 
 	/**
 	 * 
 	 * @param connectionId
 	 */
-	public String read(int connectionId);
+	public String read(int connectionId) throws Exception;
 
 	/**
 	 * 
 	 * @param connectionId
 	 * @param data
 	 */
-	public void write(int connectionId, String data);
+	public void write(int connectionId, String data) throws Exception;
 
 }
