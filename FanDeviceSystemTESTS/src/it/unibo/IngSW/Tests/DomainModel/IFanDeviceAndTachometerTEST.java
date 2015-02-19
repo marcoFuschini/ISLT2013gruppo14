@@ -1,40 +1,51 @@
 package it.unibo.IngSW.Tests.DomainModel;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import it.unibo.IngSW.FanDevice.FanDevice;
-import it.unibo.IngSW.FanDevice.FanSpeed;
-import it.unibo.IngSW.FanDevice.interfaces.IFanDevice;
+
+
+import static org.junit.Assert.*;
+import it.unibo.IngSW.Tests.CLASSES.SimFanDevice;
+import it.unibo.IngSW.Tests.CLASSES.FanSpeed;
+import it.unibo.IngSW.Tests.CLASSES.SimTachometer;
 import it.unibo.IngSW.Tests.CLASSES.Tachometer;
+import it.unibo.IngSW.Tests.CLASSES.interfaces.IFanDevice;
 import it.unibo.IngSW.Tests.CLASSES.interfaces.ITachometer;
 
 import org.junit.Test;
 
 public class IFanDeviceAndTachometerTEST {
 
-	IFanDevice fandev = new FanDevice();
-	ITachometer tac = new Tachometer();
+	IFanDevice fandev = new SimFanDevice();
+	ITachometer tac = new SimTachometer((SimFanDevice)fandev);
 
 	@Test
 	public void test() {
 		try {
+			double val;
 			fandev.setSpeed(FanSpeed.ZEROSPEED);
-			assertEquals(0d, tac.getValue());
+			val=tac.getValue();
+			assertTrue("0="+val,0d==val);
 			fandev.setSpeed(FanSpeed.MEDIUMSPEED);
 			Thread.sleep(500);
-			assertTrue((tac.getValue() >= FanSpeed.MEDIUMSPEED.getRevolMin())
-					&& (tac.getValue() <= FanSpeed.MEDIUMSPEED.getRevolMax()));
+			val=tac.getValue();
+			assertTrue((val >= FanSpeed.MEDIUMSPEED.getRevolMin())
+					&& (val <= FanSpeed.MEDIUMSPEED.getRevolMax()));
 			fandev.setSpeed(FanSpeed.LOWSPEED);
+			
 			Thread.sleep(500);
-			assertTrue((tac.getValue() >= FanSpeed.LOWSPEED.getRevolMin())
-					&& (tac.getValue() <= FanSpeed.LOWSPEED.getRevolMax()));
+			val=tac.getValue();
+			assertTrue((val >= FanSpeed.LOWSPEED.getRevolMin())
+					&& (val <= FanSpeed.LOWSPEED.getRevolMax()));
 			fandev.setSpeed(FanSpeed.HIGHSPEED);
+			
 			Thread.sleep(500);
-			assertTrue((tac.getValue() >= FanSpeed.HIGHSPEED.getRevolMin())
-					&& (tac.getValue() <= FanSpeed.HIGHSPEED.getRevolMax()));
+			val=tac.getValue();
+			assertTrue((val >= FanSpeed.HIGHSPEED.getRevolMin())
+					&& (val <= FanSpeed.HIGHSPEED.getRevolMax()));
 			fandev.setSpeed(FanSpeed.ZEROSPEED);
+			
 			Thread.sleep(5000);
-			assertEquals(0d, tac.getValue());
+			val=tac.getValue();
+			assertTrue("0="+val,0d==val);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

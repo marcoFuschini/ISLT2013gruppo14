@@ -7,12 +7,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class TruePhysicalButton implements IButton, KeyListener {
+public class PhysicalButton implements IButton, KeyListener {
 
 	private boolean pressed=false;
 	private char keyToListen;
 	
-	public TruePhysicalButton(char keyToListen) {
+	public PhysicalButton(char keyToListen) {
 		super();
 		this.keyToListen=keyToListen;
 	}

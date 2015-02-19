@@ -12,9 +12,9 @@ import javax.swing.JButton;
 
 public class HybridButton extends JButton implements IButton{
 
-	private TruePhysicalButton trueButton;
+	private PhysicalButton trueButton;
 
-	public HybridButton(String s,TruePhysicalButton truebutton) {
+	public HybridButton(String s,PhysicalButton truebutton) {
 		super(s);
 		this.setText(s);
 		this.trueButton=truebutton;

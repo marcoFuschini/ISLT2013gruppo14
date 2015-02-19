@@ -13,7 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import it.unibo.IngSW.Tests.CLASSES.HybridButton;
 import it.unibo.IngSW.Tests.CLASSES.PhysicalLed;
-import it.unibo.IngSW.Tests.CLASSES.TruePhysicalButton;
+import it.unibo.IngSW.Tests.CLASSES.PhysicalButton;
 import it.unibo.IngSW.Tests.CLASSES.interfaces.IButton;
 import it.unibo.IngSW.Tests.CLASSES.interfaces.ILed;
 
@@ -24,7 +24,7 @@ import org.junit.Test;
 
 public class PhysicalComponentsTEST {
 
-	private TruePhysicalButton tbutton = new TruePhysicalButton('o');
+	private PhysicalButton tbutton = new PhysicalButton('o');
 	private IButton button = new HybridButton("(Barra Spazziatrice)",tbutton);
 	private ILed led = new PhysicalLed();
 

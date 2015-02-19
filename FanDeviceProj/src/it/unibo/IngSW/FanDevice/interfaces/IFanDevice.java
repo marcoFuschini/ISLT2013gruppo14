@@ -13,36 +13,6 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public interface IFanDevice {
 
-	public ISensor m_ISensor=null;
-
-	public void decSpeed();
-
-	public void incSpeed();
-
-	public String receiveCommand();
-
-	public ISensorData[] receiveSensorData();
-
-	/**
-	 * 
-	 * @param dataToSend
-	 */
-	public void sendData(SensorData[] dataToSend);
-
-	/**
-	 * 
-	 * @param speed
-	 */
 	public void setSpeed(FanSpeed speed);
-
-	public void start();
-
-	public void stop();
-
-	/**
-	 * 
-	 * @param dataToSend
-	 */
-	public void sendData(ISensorData[] dataToSend);
 
 }
