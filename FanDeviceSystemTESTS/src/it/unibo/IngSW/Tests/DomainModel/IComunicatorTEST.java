@@ -3,12 +3,12 @@ package it.unibo.IngSW.Tests.DomainModel;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import it.unibo.IngSW.Tests.CLASSES.Communication;
+import it.unibo.IngSW.Tests.CLASSES.Communicator;
 import it.unibo.IngSW.Tests.CLASSES.interfaces.ICommunicator;
 
 import org.junit.Test;
 
-public class IComunicationTEST {
+public class IComunicatorTEST {
 
 	private final int serverPort1=10001,serverPort2=10002;
 	ICommunicator server, client,client2;
@@ -18,9 +18,9 @@ public class IComunicationTEST {
 	}
 	@Test
 	public void test() {
-		server=new Communication();
-		client=new Communication();
-		client2=new Communication();
+		server=new Communicator();
+		client=new Communicator();
+		client2=new Communicator();
 		int cid=0,cid2=0;
 		Thread st = new Thread(new Runnable() {
 			@Override

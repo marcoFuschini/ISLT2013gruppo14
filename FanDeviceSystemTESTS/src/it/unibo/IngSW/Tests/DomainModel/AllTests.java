@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ IComunicationTEST.class,
+@SuiteClasses({ IComunicatorTEST.class,
 		IFanDeviceAndTachometerTEST.class, PhysicalComponentsTEST.class })
 public class AllTests {
 

@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 import it.unibo.IngSW.Tests.CLASSES.interfaces.ICommunicator;
 
-public class Communication implements ICommunicator {
+public class Communicator implements ICommunicator {
 
 	private ArrayList<Socket> ids = new ArrayList<Socket>();
 	private HashMap<Integer, ServerSocket> servers = new HashMap<Integer, ServerSocket>();
