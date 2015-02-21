@@ -24,7 +24,7 @@ import org.junit.Test;
 
 public class PhysicalComponentsTEST {
 
-	private PhysicalButton tbutton = new PhysicalButton('o');
+	private PhysicalButton tbutton = new PhysicalButton('b');
 	private IButton button = new HybridButton("(Barra Spazziatrice)",tbutton);
 	private ILed led = new PhysicalLed();
 
@@ -45,6 +45,7 @@ public class PhysicalComponentsTEST {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		frame.setContentPane(contentPane);
 		//contentPane.add((JButton) button, BorderLayout.CENTER);
+		contentPane.add(new JLabel("Bottone fisico = tasto \"B\""), BorderLayout.CENTER);
 		frame.addKeyListener(tbutton);
 		button=tbutton;
 		contentPane.add(text, BorderLayout.NORTH);

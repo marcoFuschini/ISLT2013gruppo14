@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -38,7 +39,7 @@ public class Communication implements ICommunicator {
 			s.connect(new InetSocketAddress(ip, port), 5000);
 			synchronized (this) {
 				ids.add(s);
-				return ids.size();
+				return (ids.size()-1);
 			}
 		}
 
@@ -59,7 +60,7 @@ public class Communication implements ICommunicator {
 		InputStreamReader isr=new InputStreamReader(s.getInputStream());
 		BufferedReader br=new BufferedReader(isr);
 		String str=br.readLine();
-		br.close();
+		//br.close();
 		return str;
 	}
 
@@ -67,10 +68,12 @@ public class Communication implements ICommunicator {
 	public void write(int connectionId, String data) throws Exception {
 		arraylistTest(connectionId);
 		Socket s = ids.get(connectionId);
-		OutputStreamWriter osw=new OutputStreamWriter(s.getOutputStream());
+		PrintWriter pw = new PrintWriter(s.getOutputStream());
+		/*OutputStreamWriter osw=new OutputStreamWriter(s.getOutputStream());
 		BufferedWriter bw=new BufferedWriter(osw);
-		bw.write(data);
-		bw.close();
+		bw.write(data);*/
+		pw.println(data);
+		//bw.close();
 	}
 
 	private void arraylistTest(int i) throws Exception {

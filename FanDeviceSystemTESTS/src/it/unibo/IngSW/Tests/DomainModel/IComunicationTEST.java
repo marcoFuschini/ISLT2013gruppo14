@@ -10,28 +10,37 @@ import org.junit.Test;
 
 public class IComunicationTEST {
 
+	private final int serverPort1=10001,serverPort2=10002;
 	ICommunicator server, client,client2;
 
+	private void scrivi(String s){
+		System.out.println(s);
+	}
 	@Test
 	public void test() {
 		server=new Communication();
 		client=new Communication();
 		client2=new Communication();
-		int cid,cid2=0;
+		int cid=0,cid2=0;
 		Thread st = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				int rcid=0;
 				int rcid2=0;
 				try{
-					rcid=server.connect("server",10001);
-					rcid2=server.connect("server",10001);
+					scrivi("ProvoConnessione1");
+					rcid=server.connect("server",serverPort1);
+					scrivi("Connesso1 id="+rcid+" provo2");
+					rcid2=server.connect("server",serverPort2);
+					scrivi("Connesso2 id="+rcid2+" provoread2");
 					assertEquals("sono2",server.read(rcid2));
+					scrivi("provoread1");
 					assertEquals("sono1", server.read(rcid));
 					server.write(rcid,"sei1");
 					server.write(rcid2,"sei2");
 					server.disconnect(rcid);
 				}catch(Exception e){
+					scrivi("THREAD EX");
 					e.printStackTrace();
 					fail("Server error");
 				}
@@ -46,13 +55,13 @@ public class IComunicationTEST {
 		});
 		
 		try{
-			client.connect(null,10001);
+			client.connect(null,serverPort1);
 			fail("connect wrong parameters");
 		}catch(Exception e){
 			
 		}
 		try{
-			client.connect("",10001);
+			client.connect("",serverPort1);
 			fail("connect wrong parameters");
 		}catch(Exception e){
 			
@@ -81,8 +90,8 @@ public class IComunicationTEST {
 		}catch(Exception e){
 			
 		}
-		long pre=0,post;
-	/*	try{
+	/*	long pre=0,post;
+		try{
 			pre=System.currentTimeMillis();
 			client.connect("127.0.0.1",10001);
 			fail("connect timeout error");
@@ -94,10 +103,10 @@ public class IComunicationTEST {
 		
 		st.start();
 		try{
-			cid=client.connect("127.0.0.1",10001);
-			cid2=client2.connect("127.0.0.1",10001);
-			client.write(cid,"sono1");
+			cid=client.connect("127.0.0.1",serverPort1);
+			cid2=client2.connect("127.0.0.1",serverPort2);
 			client2.write(cid2,"sono2");
+			client.write(cid,"sono1");
 			assertEquals("sei2",client2.read(cid2));
 			assertEquals("sei1", client.read(cid));
 			client2.disconnect(cid2);
