@@ -46,10 +46,10 @@ public class IComunicatorTEST {
 				}
 				try{
 					String s=server.read(rcid2);
+					if(s!=null) fail("Server disconnect error s="+s);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
-				}finally{
-					fail("Server disconnect error");
 				}
 			}
 		});
@@ -118,13 +118,10 @@ public class IComunicatorTEST {
 		}
 		try{
 			String s=client.read(cid);
+			if(s!=null) fail("Client disconnect error");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
-			fail("Client disconnect error");
-		}
-		
-		
+		}		
 		
 	}
 }
