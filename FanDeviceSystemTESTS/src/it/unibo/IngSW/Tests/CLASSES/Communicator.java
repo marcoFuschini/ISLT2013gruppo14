@@ -68,7 +68,7 @@ public class Communicator implements ICommunicator {
 	public void write(int connectionId, String data) throws Exception {
 		arraylistTest(connectionId);
 		Socket s = ids.get(connectionId);
-		PrintWriter pw = new PrintWriter(s.getOutputStream());
+		PrintWriter pw = new PrintWriter(s.getOutputStream(),true);
 		/*OutputStreamWriter osw=new OutputStreamWriter(s.getOutputStream());
 		BufferedWriter bw=new BufferedWriter(osw);
 		bw.write(data);*/

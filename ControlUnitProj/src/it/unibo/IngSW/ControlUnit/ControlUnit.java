@@ -1,5 +1,8 @@
 package it.unibo.IngSW.ControlUnit;
+import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
+import it.unibo.IngSW.common.interfaces.IComunication;
+import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.IElementDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
@@ -10,7 +13,7 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class ControlUnit implements IControlUnit {
 
-	public ControlUnit(){
+	public ControlUnit(IDisplay disp, IControlCmdConsole console, IComunication client){
 
 	}
 
