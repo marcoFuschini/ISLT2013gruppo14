@@ -14,7 +14,7 @@ import java.net.SocketAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import it.unibo.IngSW.Tests.CLASSES.interfaces.ICommunicator;
+import it.unibo.IngSW.common.interfaces.ICommunicator;
 
 public class Communicator implements ICommunicator {
 

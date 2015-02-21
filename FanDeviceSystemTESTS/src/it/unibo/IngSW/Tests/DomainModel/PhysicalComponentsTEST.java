@@ -1,25 +1,22 @@
 package it.unibo.IngSW.Tests.DomainModel;
 
 import static org.junit.Assert.assertTrue;
+import it.unibo.IngSW.common.interfaces.IButton;
+import it.unibo.IngSW.common.interfaces.ILed;
+import it.unibo.IngSWBasicComponents.HybridButton;
+import it.unibo.IngSWBasicComponents.PhysicalButton;
+import it.unibo.IngSWBasicComponents.PhysicalLed;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import it.unibo.IngSW.Tests.CLASSES.HybridButton;
-import it.unibo.IngSW.Tests.CLASSES.PhysicalLed;
-import it.unibo.IngSW.Tests.CLASSES.PhysicalButton;
-import it.unibo.IngSW.Tests.CLASSES.interfaces.IButton;
-import it.unibo.IngSW.Tests.CLASSES.interfaces.ILed;
-
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class PhysicalComponentsTEST {

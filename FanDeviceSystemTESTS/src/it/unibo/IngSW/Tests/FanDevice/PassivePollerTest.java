@@ -3,8 +3,6 @@ package it.unibo.IngSW.Tests.FanDevice;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
-import it.unibo.IngSW.FanDevice.PassivePoller;
-import it.unibo.IngSW.FanDevice.interfaces.IPassiveSensor;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 import java.util.concurrent.ArrayBlockingQueue;

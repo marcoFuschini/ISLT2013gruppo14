@@ -2,13 +2,12 @@ package it.unibo.IngSW.Tests.DomainModel;
 
 
 
-import static org.junit.Assert.*;
-import it.unibo.IngSW.Tests.CLASSES.SimFanDevice;
-import it.unibo.IngSW.Tests.CLASSES.FanSpeed;
-import it.unibo.IngSW.Tests.CLASSES.SimTachometer;
-import it.unibo.IngSW.Tests.CLASSES.Tachometer;
-import it.unibo.IngSW.Tests.CLASSES.interfaces.IFanDevice;
-import it.unibo.IngSW.Tests.CLASSES.interfaces.ITachometer;
+import static org.junit.Assert.assertTrue;
+import it.unibo.IngSW.Simulatori.SimFanDevice;
+import it.unibo.IngSW.Simulatori.SimTachometer;
+import it.unibo.IngSW.common.FanSpeed;
+import it.unibo.IngSW.common.interfaces.IFanDevice;
+import it.unibo.IngSW.common.interfaces.ITachometer;
 
 import org.junit.Test;
 

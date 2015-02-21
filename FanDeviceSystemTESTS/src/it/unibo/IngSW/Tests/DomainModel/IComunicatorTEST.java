@@ -1,10 +1,9 @@
 package it.unibo.IngSW.Tests.DomainModel;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import it.unibo.IngSW.Tests.CLASSES.Communicator;
-import it.unibo.IngSW.Tests.CLASSES.interfaces.ICommunicator;
+import it.unibo.IngSW.common.interfaces.ICommunicator;
+import it.unibo.IngSWBasicComponents.Communicator;
 
 import org.junit.Test;
 
