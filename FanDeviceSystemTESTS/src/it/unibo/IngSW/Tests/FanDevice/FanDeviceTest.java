@@ -24,28 +24,6 @@ public class FanDeviceTest {
 	
 	@BeforeClass
 	public void setUpBeforeClass() throws Exception {
-		comm=new IComunication() {
-			
-			@Override
-			public void writeData(String data) {
-								
-			}
-			
-			@Override
-			public String readData() {
-				return "dataRead";
-			}
-			
-			@Override
-			public boolean disconnect() {
-				return true;
-			}
-			
-			@Override
-			public boolean connect(String fanDeviceIP) {
-				return true;
-			}
-		};
 		
 		sensor= new ISensor() {
 			boolean live=true;
