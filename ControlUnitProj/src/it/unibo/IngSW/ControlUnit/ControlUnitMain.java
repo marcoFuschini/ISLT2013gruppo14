@@ -1,5 +1,12 @@
 package it.unibo.IngSW.ControlUnit;
+import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
+import it.unibo.IngSW.ControlUnit.interfaces.IControlUnitCommunicator;
+import it.unibo.IngSW.common.Display;
+import it.unibo.IngSW.common.TachometerDisplay;
+import it.unibo.IngSW.common.ThermometerDisplay;
+import it.unibo.IngSW.common.interfaces.IDisplay;
+import it.unibo.IngSW.common.interfaces.IElementDisplay;
 
 /**
  * @author Fabio
@@ -8,22 +15,24 @@ import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
  */
 public class ControlUnitMain {
 
-	public IControlUnit m_IControlUnit;
-
-	public ControlUnitMain(){
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
-
+	private static IControlUnit controlUnit;
+	private static Display display;
+	private static IControlUnitCommunicator communicator;
+	
 	/**
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args){
-
+		//init
+		communicator=new ControlUnitCommunicator();
+		display=new Display(new IElementDisplay[]{
+				new TachometerDisplay(),
+				new ThermometerDisplay()
+		});
+		controlUnit=new ControlUnit(communicator, display);
+		
+		
 	}
 
 }

@@ -1,5 +1,8 @@
 package it.unibo.IngSW.ControlUnit;
+import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
+import it.unibo.IngSW.ControlUnit.interfaces.IControlUnitCommunicator;
+import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
@@ -9,8 +12,16 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class ControlUnit implements IControlUnit {
 
-	public ControlUnit(){
-
+	
+	private IControlUnitCommunicator communicator;
+	private IDisplay display;
+	
+	private InputPoller inputpoller;
+	private IControlCmdConsole controlcmdconsole;
+	
+	public ControlUnit(IControlUnitCommunicator communicator,IDisplay display){
+		this.communicator=communicator;
+		this.display=display;
 	}
 
 	public void finalize() throws Throwable {

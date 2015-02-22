@@ -1,4 +1,6 @@
 package it.unibo.IngSW.common;
+import javax.swing.JLabel;
+
 import it.unibo.IngSW.common.interfaces.IElementDisplay;
 
 /**
@@ -6,8 +8,10 @@ import it.unibo.IngSW.common.interfaces.IElementDisplay;
  * @version 1.0
  * @created 21-feb-2015 16.50.34
  */
-public class ThermometerDisplay implements IElementDisplay {
+public class ThermometerDisplay extends JLabel implements IElementDisplay {
 
+	private double value;
+	
 	public ThermometerDisplay(){
 
 	}
@@ -17,11 +21,11 @@ public class ThermometerDisplay implements IElementDisplay {
 	}
 
 	public String getName(){
-		return "";
+		return "thermometer";
 	}
 
 	public void refresh(){
-
+		this.setText(value+"°C");
 	}
 
 	/**
@@ -29,7 +33,7 @@ public class ThermometerDisplay implements IElementDisplay {
 	 * @param value
 	 */
 	public void setValue(String value){
-
+		this.value=Double.parseDouble(value);
 	}
 
 }

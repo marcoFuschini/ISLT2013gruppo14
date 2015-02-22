@@ -1,4 +1,6 @@
 package it.unibo.IngSW.common;
+import javax.swing.JLabel;
+
 import it.unibo.IngSW.common.interfaces.IElementDisplay;
 
 /**
@@ -6,8 +8,10 @@ import it.unibo.IngSW.common.interfaces.IElementDisplay;
  * @version 1.0
  * @created 21-feb-2015 16.50.34
  */
-public class TachometerDisplay implements IElementDisplay {
+public class TachometerDisplay extends JLabel implements IElementDisplay {
 
+	private double value;
+	
 	public TachometerDisplay(){
 
 	}
@@ -17,11 +21,11 @@ public class TachometerDisplay implements IElementDisplay {
 	}
 
 	public String getName(){
-		return "";
+		return "tachometer";
 	}
 
 	public void refresh(){
-
+		this.setText("Speed: "+value);
 	}
 
 	/**
@@ -29,7 +33,7 @@ public class TachometerDisplay implements IElementDisplay {
 	 * @param value
 	 */
 	public void setValue(String value){
-
+		this.value=Double.parseDouble(value);
 	}
 
 }
