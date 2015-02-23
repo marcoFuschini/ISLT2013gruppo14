@@ -10,10 +10,10 @@ import it.unibo.IngSW.common.interfaces.IElementDisplay;
  */
 public class TachometerDisplay extends JLabel implements IElementDisplay {
 
-	private double value;
+	private double value=0;
 	
 	public TachometerDisplay(){
-
+		refresh();
 	}
 
 	public void finalize() throws Throwable {
@@ -21,7 +21,7 @@ public class TachometerDisplay extends JLabel implements IElementDisplay {
 	}
 
 	public String getName(){
-		return "tachometer";
+		return SensorsNames.SPEED.toString();
 	}
 
 	public void refresh(){

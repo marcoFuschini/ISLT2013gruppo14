@@ -5,7 +5,7 @@ import it.unibo.IngSW.common.interfaces.IButton;
 import it.unibo.IngSW.common.interfaces.ILed;
 import it.unibo.IngSWBasicComponents.HybridButton;
 import it.unibo.IngSWBasicComponents.PhysicalButton;
-import it.unibo.IngSWBasicComponents.PhysicalLed;
+import it.unibo.IngSWBasicComponents.VirtualLed;
 
 import java.awt.BorderLayout;
 
@@ -23,7 +23,7 @@ public class PhysicalComponentsTEST {
 
 	private PhysicalButton tbutton = new PhysicalButton('b');
 	private IButton button = new HybridButton("(Barra Spazziatrice)",tbutton);
-	private ILed led = new PhysicalLed();
+	private ILed led = new VirtualLed();
 
 	private JFrame frame = new JFrame();
 	private JPanel contentPane;
