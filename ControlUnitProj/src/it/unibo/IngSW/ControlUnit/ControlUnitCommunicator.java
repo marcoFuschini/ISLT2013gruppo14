@@ -27,16 +27,17 @@ public class ControlUnitCommunicator implements IControlUnitCommunicator {
 	 * 
 	 * @param fanDeviceIP
 	 * @param fanDevicePort
+	 * @throws Exception 
 	 */
-	public void connect(String fanDeviceIP, int fanDevicePort){
+	public void connect(String fanDeviceIP, int fanDevicePort) throws Exception{
 		fdID=comm.connect(fanDeviceIP, fanDevicePort);
 	}
 
-	public void disconnect(){
+	public void disconnect() throws Exception{
 		comm.disconnect(fdID);
 	}
 
-	public ISensorData[] receiveData(){
+	public ISensorData[] receiveData() throws Exception{
 		String msg=comm.read(fdID);
 		ISensorData[] data = JSONConverter.JSONToSensorData(msg);
 		return data;
@@ -45,8 +46,9 @@ public class ControlUnitCommunicator implements IControlUnitCommunicator {
 	/**
 	 * 
 	 * @param command
+	 * @throws Exception 
 	 */
-	public void sendCommand(String command){
+	public void sendCommand(String command) throws Exception{
 		String msg=JSONConverter.commandToJSON(command);
 		comm.write(fdID, command);
 	}

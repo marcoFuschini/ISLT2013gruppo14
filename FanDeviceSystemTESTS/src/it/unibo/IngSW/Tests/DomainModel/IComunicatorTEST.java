@@ -37,6 +37,7 @@ public class IComunicatorTEST {
 					assertEquals("sono1", server.read(rcid));
 					server.write(rcid,"sei1");
 					server.write(rcid2,"sei2");
+					Thread.sleep(1000);
 					server.disconnect(rcid);
 				}catch(Exception e){
 					scrivi("THREAD EX");
@@ -52,6 +53,7 @@ public class IComunicatorTEST {
 				}
 				try {
 					server.disconnect(rcid2);
+					scrivi("server disconnesso da client 2");
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -113,7 +115,7 @@ public class IComunicatorTEST {
 			client2.write(cid2,"sono2");
 			client.write(cid,"sono1");
 			assertEquals("sei2",client2.read(cid2));
-			assertEquals("sei1", client.read(cid));
+//			assertEquals("sei1", client.read(cid));
 //			client2.disconnect(cid2);
 			
 		}catch(Exception e){
@@ -130,12 +132,11 @@ public class IComunicatorTEST {
 		
 		try{
 			Thread.sleep(3000);
-			
-			client2.write(cid2,"sono3");
+			scrivi("client2 prova a scrivere a server");
+			client2.write(cid2,"sono2");
 			fail("write on closed socket error");
 		}catch(Exception e){
-			
-		}
-		
+			e.printStackTrace();
+		}		
 	}
 }

@@ -32,29 +32,50 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 	 * 
 	 * @param viewersPort
 	 * @param controlUnitPort
+	 * @throws Exception 
 	 */
-	public void connect(int viewersPort, int controlUnitPort){
-		new Thread(new Runnable(){
+	public void connect(int viewersPort, int controlUnitPort) throws Exception{
+		try {
+			new Thread(new Runnable(){
 
-			@Override
-			public void run() {
-				while(run){
-					viewers.add(comm.connect("server", viewersPort));
+				@Override
+				public void run() {
+					while(run){
+						try {
+							int vid=comm.connect("server", viewersPort);
+							viewers.add(vid);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
 				}
-			}
-			
-		});
+				
+			});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		cuID=comm.connect("server", controlUnitPort);
 	}
 
 	public void disconnect(){
-		comm.disconnect(cuID);
+		try {
+			comm.disconnect(cuID);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (Integer i : viewers){
-			comm.disconnect(i);
+			try {
+				comm.disconnect(i);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 
-	public String receiveCommand(){
+	public String receiveCommand() throws Exception{
 		String msg=comm.read(cuID);
 		String command=JSONConverter.JSONToCommand(msg);
 		return command;
@@ -63,12 +84,13 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 	/**
 	 * 
 	 * @param data
+	 * @throws Exception 
 	 */
-	public void sendData(ISensorData[] data){
+	public void sendData(ISensorData[] data) throws Exception{
 		String msg=JSONConverter.SensorDataToJSON(data);
-		comm.write(cuID, data);
+		comm.write(cuID, msg);
 		for(Integer i:viewers){
-			comm.write(i,data);
+			comm.write(i,msg);
 		}
 	}
 

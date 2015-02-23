@@ -55,6 +55,7 @@ public class Communicator implements ICommunicator {
 		BufferedReader br=new BufferedReader(isr);
 		String str=br.readLine();
 		//br.close();
+		
 		return str;
 	}
 
@@ -63,14 +64,7 @@ public class Communicator implements ICommunicator {
 		arraylistTest(connectionId);
 		Socket s = ids.get(connectionId);
 		PrintWriter pw = new PrintWriter(s.getOutputStream(),true);
-		/*OutputStreamWriter osw=new OutputStreamWriter(s.getOutputStream());
-		BufferedWriter bw=new BufferedWriter(osw);
-		bw.write(data);*/
 		pw.println(data);
-		if(!s.isConnected()){
-			throw new Exception("socket not connected");
-		};
-		//bw.close();
 	}
 
 	private void arraylistTest(int i) throws Exception {

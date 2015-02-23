@@ -15,17 +15,19 @@ public interface IFanDeviceCommunicator {
 	 * 
 	 * @param viewersPort
 	 * @param controlUnitPort
+	 * @throws Exception 
 	 */
-	public void connect(int viewersPort, int controlUnitPort);
+	public void connect(int viewersPort, int controlUnitPort) throws Exception;
 
 	public void disconnect();
 
-	public String receiveCommand();
+	public String receiveCommand() throws Exception;
 
 	/**
 	 * 
 	 * @param data
+	 * @throws Exception 
 	 */
-	public void sendData(ISensorData[] data);
+	public void sendData(ISensorData[] data) throws Exception;
 
 }

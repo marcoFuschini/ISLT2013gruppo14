@@ -28,7 +28,7 @@ public class JSONConverter {
 		data=new SensorData[jarr.length()]; 
 		for(int i=0;i<jarr.length();i++){
 			jobj=jarr.getJSONObject(i);
-			data[i]=new SensorData(jobj.getString("name"),jobj.getDouble("value"));
+			data[i]=new SensorData(jobj.getString("name"),jobj.getString("value"));
 		}
 		return data;
 	}
