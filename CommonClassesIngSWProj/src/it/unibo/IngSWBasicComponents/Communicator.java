@@ -37,7 +37,6 @@ public class Communicator implements ICommunicator {
 				return (ids.size()-1);
 			}
 		}
-
 	}
 
 	@Override

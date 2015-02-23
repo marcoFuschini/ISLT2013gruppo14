@@ -2,9 +2,11 @@ package it.unibo.IngSW.FanDevice;
 import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceCommunicator;
 import it.unibo.IngSW.common.interfaces.ICommunicator;
 import it.unibo.IngSW.common.interfaces.ISensorData;
+import it.unibo.IngSW.utils.JSONConverter;
 import it.unibo.IngSWBasicComponents.Communicator;
 
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * @author Fabio
@@ -15,7 +17,7 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 	
 	protected ICommunicator comm;
 	protected int cuID;
-	protected ArrayList<Integer> viewers;
+	protected List<Integer> viewers;
 	protected boolean run;
 	
 	public FanDeviceCommunicator(){
@@ -49,11 +51,12 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 		comm.disconnect(cuID);
 		for (Integer i : viewers){
 			comm.disconnect(i);
-		};
+		}
 	}
 
 	public String receiveCommand(){
-		String command=comm.read(cuID);
+		String msg=comm.read(cuID);
+		String command=JSONConverter.JSONToCommand(msg);
 		return command;
 	}
 
@@ -62,8 +65,11 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 	 * @param data
 	 */
 	public void sendData(ISensorData[] data){
-		//TODO
-		
+		String msg=JSONConverter.SensorDataToJSON(data);
+		comm.write(cuID, data);
+		for(Integer i:viewers){
+			comm.write(i,data);
+		}
 	}
 
 }

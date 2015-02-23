@@ -2,6 +2,7 @@ package it.unibo.IngSW.ControlUnit;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnitCommunicator;
 import it.unibo.IngSW.common.interfaces.ICommunicator;
 import it.unibo.IngSW.common.interfaces.ISensorData;
+import it.unibo.IngSW.utils.JSONConverter;
 import it.unibo.IngSWBasicComponents.Communicator;
 
 /**
@@ -37,11 +38,7 @@ public class ControlUnitCommunicator implements IControlUnitCommunicator {
 
 	public ISensorData[] receiveData(){
 		String msg=comm.read(fdID);
-		JSONObject jobj=new JSONObject(msg);
-		ISensorData[] data=new SensorData[jobj.length];
-		for(int i=0;i<data.length;i++){
-			data[i]=new SensorData(jobj.get(i).getValue("name"),jobj.get(i).getValue("value"));
-		}
+		ISensorData[] data = JSONConverter.JSONToSensorData(msg);
 		return data;
 	}
 
@@ -50,6 +47,7 @@ public class ControlUnitCommunicator implements IControlUnitCommunicator {
 	 * @param command
 	 */
 	public void sendCommand(String command){
+		String msg=JSONConverter.commandToJSON(command);
 		comm.write(fdID, command);
 	}
 

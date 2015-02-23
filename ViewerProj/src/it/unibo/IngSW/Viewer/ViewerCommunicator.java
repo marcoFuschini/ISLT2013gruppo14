@@ -3,6 +3,7 @@ import it.unibo.IngSW.Viewer.interfaces.IViewerCommunicator;
 import it.unibo.IngSW.common.SensorData;
 import it.unibo.IngSW.common.interfaces.ICommunicator;
 import it.unibo.IngSW.common.interfaces.ISensorData;
+import it.unibo.IngSW.utils.JSONConverter;
 import it.unibo.IngSWBasicComponents.Communicator;
 
 /**
@@ -38,11 +39,7 @@ public class ViewerCommunicator implements IViewerCommunicator {
 
 	public ISensorData[] receiveData(){
 		String msg=comm.read(fdID);
-		JSONObject jobj=new JSONObject(msg);
-		ISensorData[] data=new SensorData[jobj.length];
-		for(int i=0;i<data.length;i++){
-			data[i]=new SensorData(jobj.get(i).getValue("name"),jobj.get(i).getValue("value"));
-		}
+		ISensorData[] data = JSONConverter.JSONToSensorData(msg);
 		return data;
 	}
 
