@@ -7,9 +7,11 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  * @created 21-feb-2015 16.50.34
  */
 public class SensorData implements ISensorData {
-
-	public SensorData(){
-
+	private String name;
+	private double val;
+	public SensorData(String name,double val){
+		this.name=name;
+		this.val=val;
 	}
 
 	public void finalize() throws Throwable {
@@ -17,11 +19,11 @@ public class SensorData implements ISensorData {
 	}
 
 	public String getName(){
-		return "";
+		return name;
 	}
 
 	public double getValue(){
-		return 0;
+		return val;
 	}
 
 	/**
@@ -29,7 +31,7 @@ public class SensorData implements ISensorData {
 	 * @param name
 	 */
 	public void setName(String name){
-
+		this.name=name;
 	}
 
 	/**
@@ -37,7 +39,7 @@ public class SensorData implements ISensorData {
 	 * @param value
 	 */
 	public void setValue(double value){
-
+		this.val=value;
 	}
 
 }
