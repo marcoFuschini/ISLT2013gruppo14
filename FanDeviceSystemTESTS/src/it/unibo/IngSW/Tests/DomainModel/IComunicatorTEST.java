@@ -45,17 +45,10 @@ public class IComunicatorTEST {
 					fail("Server error");
 				}
 				try{
-//					String s=server.read(rcid2);
-//					if(s!=null) fail("Server disconnect error s="+s);
+					String s=server.read(rcid2);
+					if(s!=null) fail("Server disconnect error s="+s);
 					
 				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				try {
-					server.disconnect(rcid2);
-					scrivi("server disconnesso da client 2");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -115,8 +108,8 @@ public class IComunicatorTEST {
 			client2.write(cid2,"sono2");
 			client.write(cid,"sono1");
 			assertEquals("sei2",client2.read(cid2));
-//			assertEquals("sei1", client.read(cid));
-//			client2.disconnect(cid2);
+			assertEquals("sei1", client.read(cid));
+			client2.disconnect(cid2);
 			
 		}catch(Exception e){
 			e.printStackTrace();
@@ -129,14 +122,5 @@ public class IComunicatorTEST {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		try{
-			Thread.sleep(3000);
-			scrivi("client2 prova a scrivere a server");
-			client2.write(cid2,"sono2");
-			fail("write on closed socket error");
-		}catch(Exception e){
-			e.printStackTrace();
-		}		
 	}
 }
