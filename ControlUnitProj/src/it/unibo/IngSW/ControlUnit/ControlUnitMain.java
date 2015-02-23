@@ -36,8 +36,8 @@ public class ControlUnitMain {
 	private static IButton[] buttons = { new VirtualButton("Start"),
 			new HybridButton("Stop", pButtons[0]), new VirtualButton("LOW"),
 			new VirtualButton("MID"), new VirtualButton("HIGH"),
-			new VirtualButton("increment speed"),
-			new VirtualButton("decrement speed") };
+			new VirtualButton("decrement speed"), 
+			new VirtualButton("increment speed")};
 	private static IElementDisplay[] displayEls = { new VirtualLed(),
 			new TachometerDisplay(), new ThermometerDisplay() };
 
@@ -79,9 +79,9 @@ public class ControlUnitMain {
 		mainPane.add((JButton) buttons[4], c);// high
 		c.gridx = 0;
 		c.gridy++;
-		mainPane.add((JButton) buttons[6], c);// dec
+		mainPane.add((JButton) buttons[5], c);// dec
 		c.gridx++;
-		mainPane.add((JButton) buttons[5], c);// inc
+		mainPane.add((JButton) buttons[6], c);// inc
 		c.gridx = 0;
 		c.gridy++;
 		c.gridy++;
@@ -126,8 +126,13 @@ public class ControlUnitMain {
 		
 		ISensorData[] data;
 		do{
+			try{
 			data=controlUnit.receiveData();
 			controlUnit.updateData(data);
+			}catch (Exception e){
+				kill();
+				e.printStackTrace();
+			}
 		}while(datReceiverRun);
 
 	}

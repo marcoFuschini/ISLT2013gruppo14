@@ -25,6 +25,8 @@ public class ControlUnit implements IControlUnit {
 		this.communicator=communicator;
 		this.display=display;
 		this.buttons=buttons;
+		this.controlcmdconsole=new ControlCmdConsole();
+		this.inputpoller=new InputPoller(controlcmdconsole,buttons);
 	}
 
 	public void finalize() throws Throwable {
@@ -37,15 +39,15 @@ public class ControlUnit implements IControlUnit {
 	 * @param fanDevicePort
 	 */
 	public void connect(String fanDeviceIP, int fanDevicePort){
-
+		communicator.connect(fanDeviceIP, fanDevicePort);
 	}
 
 	public void disconnect(){
-
+		communicator.disconnect();
 	}
 
 	public String readCommand(){
-		return "";
+		return controlcmdconsole.readCommand();
 	}
 
 	/**
@@ -53,7 +55,7 @@ public class ControlUnit implements IControlUnit {
 	 * @param command
 	 */
 	public void sendCommand(String command){
-
+		communicator.sendCommand(command);
 	}
 
 	/**
@@ -61,13 +63,14 @@ public class ControlUnit implements IControlUnit {
 	 * @param data
 	 */
 	public void updateData(ISensorData[] data){
-
+		for(ISensorData d:data){
+			display.writeData(d.getValue(), d.getName());
+		}
 	}
 
 	@Override
 	public ISensorData[] receiveData() {
-		// TODO Auto-generated method stub
-		return null;
+		return communicator.receiveData();
 	}
 
 }

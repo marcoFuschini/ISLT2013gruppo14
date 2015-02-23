@@ -8,8 +8,8 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class SensorData implements ISensorData {
 	private String name;
-	private double val;
-	public SensorData(String name,double val){
+	private String val;
+	public SensorData(String name,String val){
 		this.name=name;
 		this.val=val;
 	}
@@ -22,7 +22,7 @@ public class SensorData implements ISensorData {
 		return name;
 	}
 
-	public double getValue(){
+	public String getValue(){
 		return val;
 	}
 
@@ -38,7 +38,7 @@ public class SensorData implements ISensorData {
 	 * 
 	 * @param value
 	 */
-	public void setValue(double value){
+	public void setValue(String value){
 		this.val=value;
 	}
 

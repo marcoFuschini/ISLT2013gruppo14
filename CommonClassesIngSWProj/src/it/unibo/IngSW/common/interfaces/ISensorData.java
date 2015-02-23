@@ -9,7 +9,7 @@ public interface ISensorData {
 
 	public String getName();
 
-	public double getValue();
+	public String getValue();
 
 	/**
 	 * 
@@ -21,6 +21,6 @@ public interface ISensorData {
 	 * 
 	 * @param value
 	 */
-	public void setValue(double value);
+	public void setValue(String value);
 
 }
