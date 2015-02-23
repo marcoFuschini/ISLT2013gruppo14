@@ -67,6 +67,9 @@ public class Communicator implements ICommunicator {
 		BufferedWriter bw=new BufferedWriter(osw);
 		bw.write(data);*/
 		pw.println(data);
+		if(!s.isConnected()){
+			throw new Exception("socket not connected");
+		};
 		//bw.close();
 	}
 
