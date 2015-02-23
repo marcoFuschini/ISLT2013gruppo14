@@ -19,22 +19,28 @@ public interface IFanDeviceDecorator {
 	 * 
 	 * @param viewerPort
 	 * @param controlUnitPort
+	 * @throws Exception 
 	 */
-	public void connect(int viewerPort, int controlUnitPort);
+	public void connect(int viewerPort, int controlUnitPort) throws Exception;
 
 	public void decSpeed();
 
 	public ISensorData[] getSensorData();
 
 	public void incSpeed();
+	
+	public void start();
+	
+	public void stop();
 
-	public String receiveCommand();
+	public String receiveCommand() throws Exception;
 
 	/**
 	 * 
 	 * @param data
+	 * @throws Exception 
 	 */
-	public void sendData(ISensorData[] data);
+	public void sendData(ISensorData[] data) throws Exception;
 
 	/**
 	 * 

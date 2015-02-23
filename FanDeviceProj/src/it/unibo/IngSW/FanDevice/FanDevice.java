@@ -8,9 +8,9 @@ import it.unibo.IngSW.common.interfaces.IFanDevice;
  * @created 21-feb-2015 16.50.33
  */
 public class FanDevice implements IFanDevice {
-
+	private FanSpeed speed;
 	public FanDevice(){
-
+		speed=FanSpeed.ZEROSPEED;
 	}
 
 	public void finalize() throws Throwable {
@@ -22,7 +22,7 @@ public class FanDevice implements IFanDevice {
 	 * @param speed
 	 */
 	public void setSpeed(FanSpeed speed){
-
+		this.speed=speed;
 	}
 
 }
