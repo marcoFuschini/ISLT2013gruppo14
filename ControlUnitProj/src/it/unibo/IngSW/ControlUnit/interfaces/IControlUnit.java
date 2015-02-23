@@ -1,5 +1,4 @@
 package it.unibo.IngSW.ControlUnit.interfaces;
-import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
@@ -30,7 +29,7 @@ public interface IControlUnit {
 	 * 
 	 * @param data
 	 */
-	public void receiveData(ISensorData[] data);
+	public ISensorData[] receiveData();
 
 	/**
 	 * 

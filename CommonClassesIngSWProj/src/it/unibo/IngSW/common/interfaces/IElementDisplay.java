@@ -11,10 +11,6 @@ public interface IElementDisplay {
 
 	public void refresh();
 
-	/**
-	 * 
-	 * @param value
-	 */
 	public void setValue(String value);
 
 }

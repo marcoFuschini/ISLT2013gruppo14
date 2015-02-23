@@ -10,10 +10,10 @@ import it.unibo.IngSW.common.interfaces.IElementDisplay;
  */
 public class ThermometerDisplay extends JLabel implements IElementDisplay {
 
-	private double value;
+	private double value=0;
 	
 	public ThermometerDisplay(){
-
+		refresh();
 	}
 
 	public void finalize() throws Throwable {
@@ -21,7 +21,7 @@ public class ThermometerDisplay extends JLabel implements IElementDisplay {
 	}
 
 	public String getName(){
-		return "thermometer";
+		return SensorsNames.TEMPERATURE.toString();
 	}
 
 	public void refresh(){

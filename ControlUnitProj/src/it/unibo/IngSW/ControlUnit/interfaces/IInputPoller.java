@@ -1,5 +1,4 @@
 package it.unibo.IngSW.ControlUnit.interfaces;
-import it.unibo.IngSW.common.interfaces.IButton;
 
 /**
  * @author Fabio

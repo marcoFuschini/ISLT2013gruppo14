@@ -2,6 +2,7 @@ package it.unibo.IngSW.ControlUnit;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnitCommunicator;
+import it.unibo.IngSW.common.interfaces.IButton;
 import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
@@ -15,13 +16,15 @@ public class ControlUnit implements IControlUnit {
 	
 	private IControlUnitCommunicator communicator;
 	private IDisplay display;
+	private IButton[] buttons;
 	
 	private InputPoller inputpoller;
 	private IControlCmdConsole controlcmdconsole;
 	
-	public ControlUnit(IControlUnitCommunicator communicator,IDisplay display){
+	public ControlUnit(IControlUnitCommunicator communicator,IDisplay display, IButton[] buttons){
 		this.communicator=communicator;
 		this.display=display;
+		this.buttons=buttons;
 	}
 
 	public void finalize() throws Throwable {
@@ -47,14 +50,6 @@ public class ControlUnit implements IControlUnit {
 
 	/**
 	 * 
-	 * @param data
-	 */
-	public void receiveData(ISensorData[] data){
-
-	}
-
-	/**
-	 * 
 	 * @param command
 	 */
 	public void sendCommand(String command){
@@ -67,6 +62,12 @@ public class ControlUnit implements IControlUnit {
 	 */
 	public void updateData(ISensorData[] data){
 
+	}
+
+	@Override
+	public ISensorData[] receiveData() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
