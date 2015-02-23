@@ -13,6 +13,9 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class ControlUnit implements IControlUnit {
 
+	//CONSTANTS
+	public static final int CMDBUFFERMAXSIZE=20;
+	
 	
 	private IControlUnitCommunicator communicator;
 	private IDisplay display;
@@ -29,15 +32,6 @@ public class ControlUnit implements IControlUnit {
 		this.inputpoller=new InputPoller(controlcmdconsole,buttons);
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
-	/**
-	 * 
-	 * @param fanDeviceIP
-	 * @param fanDevicePort
-	 */
 	public void connect(String fanDeviceIP, int fanDevicePort){
 		communicator.connect(fanDeviceIP, fanDevicePort);
 	}

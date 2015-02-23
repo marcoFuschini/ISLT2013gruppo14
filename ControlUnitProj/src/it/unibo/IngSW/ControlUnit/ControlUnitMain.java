@@ -133,14 +133,15 @@ public class ControlUnitMain {
 				kill();
 				e.printStackTrace();
 			}
-		}while(datReceiverRun);
-
+		}while(datReceiverRun&&display.isVisible());
+		kill();
 	}
 	
 	private static void kill(){
 		inputSenderRun=false;
 		datReceiverRun=false;
 		controlUnit.disconnect();
+		display.dispose();
 	}
 
 }

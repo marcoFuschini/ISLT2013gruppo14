@@ -1,5 +1,9 @@
 package it.unibo.IngSW.ControlUnit;
+
+import java.util.concurrent.ArrayBlockingQueue;
+
 import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.FanSpeed;
 
 /**
@@ -9,40 +13,84 @@ import it.unibo.IngSW.common.FanSpeed;
  */
 public class ControlCmdConsole implements IControlCmdConsole {
 
-	public ControlCmdConsole(){
+	private ArrayBlockingQueue<String> buffer;
 
+	public ControlCmdConsole() {
+		buffer = new ArrayBlockingQueue<String>(ControlUnit.CMDBUFFERMAXSIZE);
 	}
 
-	public void finalize() throws Throwable {
-
+	public boolean decSpeed() {
+		try {
+			buffer.put(Command.DECSPEED.toString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
-	public boolean decSpeed(){
-		return false;
+	public boolean incSpeed() {
+		try {
+			buffer.put(Command.INCSPEED.toString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
-	public boolean incSpeed(){
-		return false;
-	}
-
-	public String readCommand(){
-		return "";
+	public String readCommand() {
+		try {
+			return buffer.take();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return "";
+		}
 	}
 
 	/**
 	 * 
 	 * @param speed
 	 */
-	public boolean setSpeed(FanSpeed speed){
-		return false;
+	public boolean setSpeed(FanSpeed speed) {
+		try {
+			switch (speed) {
+			case LOWSPEED:
+				buffer.put(Command.LOWSPEED.toString());
+				break;
+			case MEDIUMSPEED:
+				buffer.put(Command.MEDIUMSPEED.toString());
+				break;
+			case HIGHSPEED:
+				buffer.put(Command.HIGHSPEED.toString());
+				break;
+			}
+
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
-	public boolean start(){
-		return false;
+	public boolean start() {
+		try {
+			buffer.put(Command.START.toString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
-	public boolean stop(){
-		return false;
+	public boolean stop() {
+		try {
+			buffer.put(Command.STOP.toString());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 }
