@@ -22,10 +22,6 @@ public class Display extends JFrame implements IDisplay {
 		
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	public void refresh(){
 		for(IElementDisplay el:elements){
 			el.refresh();
@@ -44,7 +40,7 @@ public class Display extends JFrame implements IDisplay {
 				el.setValue(value);
 			}
 		}
-		return false;
+		return true;
 	}
 
 }
