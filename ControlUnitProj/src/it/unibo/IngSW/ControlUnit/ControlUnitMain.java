@@ -32,7 +32,6 @@ public class ControlUnitMain {
 
 	private static IControlUnit controlUnit;
 	private static Display display;
-	private static IControlUnitCommunicator communicator;
 	private static PhysicalButton[] pButtons = { new PhysicalButton(' ') };
 	private static IButton[] buttons = { new VirtualButton("Start"),
 			new HybridButton("Stop", pButtons[0]), new VirtualButton("LOW"),
@@ -102,9 +101,8 @@ public class ControlUnitMain {
 
 	public static void main(String[] args) {
 		// init
-		communicator = new ControlUnitCommunicator();
 		display = new Display(displayEls);
-		controlUnit = new ControlUnit(communicator, display, buttons);
+		controlUnit = new ControlUnit(display, buttons);
 		creaGUI();
 		Thread inputSenderT = new Thread(new Runnable() {
 
@@ -142,7 +140,10 @@ public class ControlUnitMain {
 	private static void kill(){
 		inputSenderRun=false;
 		datReceiverRun=false;
-		controlUnit.disconnect();
+		try {
+			controlUnit.disconnect();
+		} catch (Exception e) {
+		}
 		display.dispose();
 	}
 

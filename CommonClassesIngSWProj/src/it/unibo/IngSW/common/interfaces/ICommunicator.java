@@ -22,6 +22,7 @@ public interface ICommunicator {
 	 */
 	public void disconnect(int connectionId) throws Exception;
 
+	public void closeServer(int serverPort) throws Exception;
 	/**
 	 * 
 	 * @param connectionId

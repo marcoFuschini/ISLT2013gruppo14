@@ -20,7 +20,7 @@ public class Viewer implements IViewer {
 		this.display=display;
 	}
 
-	public void connect(int fanDevicePort, String fanDeviceIP) throws Exception{
+	public void connect(String fanDeviceIP,int fanDevicePort) throws Exception{
 			communicator.connect(fanDeviceIP, fanDevicePort);
 	}
 

@@ -75,7 +75,7 @@ public class ViewerMain {
 		creaGUI();
 		
 		try {
-			viewer.connect(Integer.parseInt(args[1]), args[0]);
+			viewer.connect(args[0],Integer.parseInt(args[1]));
 		} catch (NumberFormatException e) {
 			scrivi("Porta non valida");
 			e.printStackTrace();
