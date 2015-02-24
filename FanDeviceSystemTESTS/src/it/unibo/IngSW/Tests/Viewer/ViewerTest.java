@@ -86,7 +86,7 @@ public class ViewerTest {
 		ISensorData[] data;
 		
 		try {
-			v.connect(SERVERPORT, "127.0.0.1");
+			v.connect("127.0.0.1",SERVERPORT);
 			data=v.receiveData();
 			v.updateData(data);
 			assertTrue("val3".equals(el1value));
@@ -100,7 +100,7 @@ public class ViewerTest {
 			data=v.receiveData();
 			fail("receiveData errato");
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	}
 

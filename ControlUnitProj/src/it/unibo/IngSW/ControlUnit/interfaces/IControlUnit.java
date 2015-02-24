@@ -18,24 +18,27 @@ public interface IControlUnit {
 	 * 
 	 * @param fanDeviceIP
 	 * @param fanDevicePort
+	 * @throws Exception 
 	 */
-	public void connect(String fanDeviceIP, int fanDevicePort);
+	public void connect(String fanDeviceIP, int fanDevicePort) throws Exception;
 
-	public void disconnect();
+	public void disconnect() throws Exception;
 
 	public String readCommand();
 
 	/**
 	 * 
 	 * @param data
+	 * @throws Exception 
 	 */
-	public ISensorData[] receiveData();
+	public ISensorData[] receiveData() throws Exception;
 
 	/**
 	 * 
 	 * @param command
+	 * @throws Exception 
 	 */
-	public void sendCommand(String command);
+	public void sendCommand(String command) throws Exception;
 
 	/**
 	 * 

@@ -46,6 +46,17 @@ public class Communicator implements ICommunicator {
 		s.close();
 		ids.set(connectionId, null);
 	}
+	
+	@Override
+	public void closeServer(int serverPort) throws Exception{
+		ServerSocket ss=servers.get(new Integer(serverPort));
+		if(ss==null){
+			throw new Exception("server port not open");
+		}else{
+			ss.close();
+			servers.remove(new Integer(serverPort));
+		}
+	}
 
 	@Override
 	public String read(int connectionId) throws Exception {

@@ -18,7 +18,7 @@ public interface IViewer {
 	 * @param fanDeviceIP
 	 * @throws Exception 
 	 */
-	public void connect(int fanDevicePort, String fanDeviceIP) throws Exception;
+	public void connect(String fanDeviceIP,int fanDevicePort) throws Exception;
 
 	public void diconnect() throws Exception;
 
