@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
@@ -93,6 +94,7 @@ public class ControlUnitMain {
 
 		display.setContentPane(mainPane);
 		display.setResizable(false);
+		display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		display.pack();
 		display.setVisible(true);
 

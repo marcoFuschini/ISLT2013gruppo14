@@ -1,5 +1,8 @@
 package it.unibo.IngSW.Viewer;
 import it.unibo.IngSW.Viewer.interfaces.IViewer;
+import it.unibo.IngSW.Viewer.interfaces.IViewerCommunicator;
+import it.unibo.IngSW.common.interfaces.IDisplay;
+import it.unibo.IngSW.common.interfaces.IElementDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
@@ -9,37 +12,43 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class Viewer implements IViewer {
 
-	public Viewer(){
-
+	private IViewerCommunicator communicator;
+	private IDisplay display;
+	
+	public Viewer(IViewerCommunicator communicator, IDisplay display){
+		this.communicator=communicator;
+		this.display=display;
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
-	/**
-	 * 
-	 * @param fanDevicePort
-	 * @param fanDeviceIP
-	 */
 	public void connect(int fanDevicePort, String fanDeviceIP){
-
+		try {
+			communicator.connect(fanDeviceIP, fanDevicePort);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void diconnect(){
-
+		try {
+			communicator.disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ISensorData[] receiveData(){
-		return null;
+		try {
+			return communicator.receiveData();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	/**
-	 * 
-	 * @param data
-	 */
 	public void updateData(ISensorData[] data){
-
+		for(ISensorData d:data){
+			display.writeData(d.getValue(), d.getName());
+		}
 	}
 
 }
