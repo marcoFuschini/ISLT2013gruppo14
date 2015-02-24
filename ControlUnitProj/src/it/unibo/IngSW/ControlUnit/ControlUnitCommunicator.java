@@ -50,7 +50,7 @@ public class ControlUnitCommunicator implements IControlUnitCommunicator {
 	 */
 	public void sendCommand(String command) throws Exception{
 		String msg=JSONConverter.commandToJSON(command);
-		comm.write(fdID, command);
+		comm.write(fdID, msg);
 	}
 
 }

@@ -60,6 +60,7 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 	}
 
 	public void disconnect(){
+		run=false;
 		try {
 			comm.disconnect(cuID);
 		} catch (Exception e) {
@@ -84,6 +85,9 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 
 	public String receiveCommand() throws Exception{
 		String msg=comm.read(cuID);
+		if(msg==null){
+			throw new Exception("ControlUnit disconnected");
+		}
 		String command=JSONConverter.JSONToCommand(msg);
 		return command;
 	}
@@ -100,16 +104,15 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 			System.out.println("viewer "+(i+1)+" of "+viewers.size());
 			try{
 				comm.write(viewers.get(i),msg);
-/*				String s=comm.read(viewers.get(i));
-				System.out.println(s);
+				String s=comm.read(viewers.get(i));
 				if(!s.equals("ack")){
 					viewers.remove(i);
 					i--;
 				}
-*/			}catch(Exception e){
-/*				viewers.remove(i);
+			}catch(Exception e){
+				viewers.remove(i);
 				i--;
-*/				e.printStackTrace();
+				e.printStackTrace();
 			}
 		}
 	}

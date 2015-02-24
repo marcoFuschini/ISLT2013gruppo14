@@ -25,7 +25,7 @@ public interface IFanDeviceDecorator {
 
 	public void decSpeed();
 
-	public ISensorData[] getSensorData();
+	public ISensorData[] getSensorData() throws InterruptedException;
 
 	public void incSpeed();
 	

@@ -1,5 +1,7 @@
 package it.unibo.IngSW.FanDevice;
 
+import java.util.concurrent.ArrayBlockingQueue;
+
 import it.unibo.IngSW.FanDevice.interfaces.ISensorDataBuffer;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
@@ -10,8 +12,10 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class SensorDataBuffer implements ISensorDataBuffer {
 
+	private ArrayBlockingQueue<ISensorData[]> buf;
+	
 	public SensorDataBuffer(){
-
+		buf=new ArrayBlockingQueue<ISensorData[]>(2048);
 	}
 
 	public void finalize() throws Throwable {
@@ -21,13 +25,14 @@ public class SensorDataBuffer implements ISensorDataBuffer {
 	/**
 	 * 
 	 * @param data
+	 * @throws InterruptedException 
 	 */
-	public void put(ISensorData[] data){
-
+	public void put(ISensorData[] data) throws InterruptedException{
+		buf.put(data);
 	}
 
-	public ISensorData[] take(){
-		return null;
+	public ISensorData[] take() throws InterruptedException{
+		return buf.take();
 	}
 
 }

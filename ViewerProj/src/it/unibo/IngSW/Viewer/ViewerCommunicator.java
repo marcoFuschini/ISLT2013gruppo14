@@ -40,9 +40,8 @@ public class ViewerCommunicator implements IViewerCommunicator {
 
 	public ISensorData[] receiveData() throws Exception{
 		String msg=comm.read(fdID);
-		System.out.println("json:"+msg);
 		ISensorData[] data = JSONConverter.JSONToSensorData(msg);
-//		comm.write(fdID,"ack");
+		comm.write(fdID,"ack");
 		return data;
 	}
 

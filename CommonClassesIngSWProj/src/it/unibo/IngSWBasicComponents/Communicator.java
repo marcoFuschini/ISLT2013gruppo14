@@ -14,11 +14,12 @@ import java.util.HashMap;
 public class Communicator implements ICommunicator {
 
 	private ArrayList<Socket> ids = new ArrayList<Socket>();
+	private ArrayList<BufferedReader> brs=new ArrayList<BufferedReader>();
+	private ArrayList<PrintWriter> pws=new ArrayList<PrintWriter>();
 	private HashMap<Integer, ServerSocket> servers = new HashMap<Integer, ServerSocket>();
 
 	@Override
 	public int connect(String ip, int port) throws Exception {
-
 		if ("server".equals(ip)) {
 			ServerSocket ss = servers.get(port);
 			if (ss == null) {
@@ -26,14 +27,20 @@ public class Communicator implements ICommunicator {
 				servers.put(port, ss);
 			}
 			Socket s=ss.accept();
+
 			synchronized (this) {
+				brs.add(new BufferedReader(new InputStreamReader(s.getInputStream())));
+				pws.add(new PrintWriter(s.getOutputStream()));
 				ids.add(s);
 				return (ids.size() - 1);
 			}
 		} else {
 			Socket s = new Socket();
 			s.connect(new InetSocketAddress(ip, port), 5000);
+
 			synchronized (this) {
+				brs.add(new BufferedReader(new InputStreamReader(s.getInputStream())));
+				pws.add(new PrintWriter(s.getOutputStream()));
 				ids.add(s);
 				return (ids.size()-1);
 			}
@@ -62,21 +69,23 @@ public class Communicator implements ICommunicator {
 	@Override
 	public String read(int connectionId) throws Exception {
 		arraylistTest(connectionId);
-		Socket s = ids.get(connectionId);
+/*		Socket s = ids.get(connectionId);
 		InputStreamReader isr=new InputStreamReader(s.getInputStream());
 		BufferedReader br=new BufferedReader(isr);
 		String str=br.readLine();
-		//br.close();
-		
+*/		//br.close();
+		String str=brs.get(connectionId).readLine();
 		return str;
 	}
 
 	@Override
 	public void write(int connectionId, String data) throws Exception {
 		arraylistTest(connectionId);
-		Socket s = ids.get(connectionId);
+/*		Socket s = ids.get(connectionId);
 		PrintWriter pw = new PrintWriter(s.getOutputStream(),true);
 		pw.println(data);
+*/		
+		pws.get(connectionId).println();
 	}
 
 	private void arraylistTest(int i) throws Exception {
@@ -91,4 +100,3 @@ public class Communicator implements ICommunicator {
 		}
 	}
 }
-

@@ -54,7 +54,7 @@ public class FanDeviceDecorator implements IFanDeviceDecorator {
 		}
 	}
 
-	public ISensorData[] getSensorData(){
+	public ISensorData[] getSensorData() throws InterruptedException{
 		return buffer.take();
 	}
 

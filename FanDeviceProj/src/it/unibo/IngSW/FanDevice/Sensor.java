@@ -1,5 +1,6 @@
 package it.unibo.IngSW.FanDevice;
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
+import it.unibo.IngSW.common.interfaces.IBasicSensor;
 
 /**
  * @author Fabio
@@ -8,8 +9,11 @@ import it.unibo.IngSW.FanDevice.interfaces.ISensor;
  */
 public class Sensor implements ISensor {
 
-	public Sensor(){
-
+	private IBasicSensor sensor;
+	private String name;
+	public Sensor(IBasicSensor bSensor,String sensorName){
+		sensor=bSensor;
+		name=sensorName;
 	}
 
 	public void finalize() throws Throwable {
@@ -17,11 +21,11 @@ public class Sensor implements ISensor {
 	}
 
 	public String getName(){
-		return "";
+		return name;
 	}
 
 	public double getValue(){
-		return 0;
+		return sensor.getValue();
 	}
 
 }

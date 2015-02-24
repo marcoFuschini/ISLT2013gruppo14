@@ -12,9 +12,10 @@ public interface ISensorDataBuffer {
 	/**
 	 * 
 	 * @param data
+	 * @throws InterruptedException 
 	 */
-	public void put(ISensorData[] data);
+	public void put(ISensorData[] data) throws InterruptedException;
 
-	public ISensorData[] take();
+	public ISensorData[] take() throws InterruptedException;
 
 }
