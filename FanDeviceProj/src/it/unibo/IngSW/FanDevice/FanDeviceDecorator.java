@@ -18,8 +18,8 @@ public class FanDeviceDecorator implements IFanDeviceDecorator {
 	private FanSpeed currentSpeed;
 	private boolean active;
 	
-	public FanDeviceDecorator(IFanDeviceCommunicator comm,ISensorDataBuffer buf){
-		this.comm=comm;
+	public FanDeviceDecorator(ISensorDataBuffer buf){
+		comm=new FanDeviceCommunicator();
 		buffer=buf;
 		fd=new FanDevice();
 		currentSpeed=FanSpeed.ZEROSPEED;

@@ -30,7 +30,7 @@ public class Communicator implements ICommunicator {
 
 			synchronized (this) {
 				brs.add(new BufferedReader(new InputStreamReader(s.getInputStream())));
-				pws.add(new PrintWriter(s.getOutputStream()));
+				pws.add(new PrintWriter(s.getOutputStream(),true));
 				ids.add(s);
 				return (ids.size() - 1);
 			}
@@ -40,7 +40,7 @@ public class Communicator implements ICommunicator {
 
 			synchronized (this) {
 				brs.add(new BufferedReader(new InputStreamReader(s.getInputStream())));
-				pws.add(new PrintWriter(s.getOutputStream()));
+				pws.add(new PrintWriter(s.getOutputStream(),true));
 				ids.add(s);
 				return (ids.size()-1);
 			}
@@ -52,7 +52,9 @@ public class Communicator implements ICommunicator {
 		arraylistTest(connectionId);
 		Socket s = ids.get(connectionId);
 		s.close();
-		ids.set(connectionId, null);
+		ids.set(connectionId,null);
+		pws.set(connectionId,null);
+		brs.set(connectionId,null);
 	}
 	
 	@Override
@@ -69,11 +71,6 @@ public class Communicator implements ICommunicator {
 	@Override
 	public String read(int connectionId) throws Exception {
 		arraylistTest(connectionId);
-/*		Socket s = ids.get(connectionId);
-		InputStreamReader isr=new InputStreamReader(s.getInputStream());
-		BufferedReader br=new BufferedReader(isr);
-		String str=br.readLine();
-*/		//br.close();
 		String str=brs.get(connectionId).readLine();
 		return str;
 	}
@@ -81,11 +78,7 @@ public class Communicator implements ICommunicator {
 	@Override
 	public void write(int connectionId, String data) throws Exception {
 		arraylistTest(connectionId);
-/*		Socket s = ids.get(connectionId);
-		PrintWriter pw = new PrintWriter(s.getOutputStream(),true);
-		pw.println(data);
-*/		
-		pws.get(connectionId).println();
+		pws.get(connectionId).println(data);
 	}
 
 	private void arraylistTest(int i) throws Exception {

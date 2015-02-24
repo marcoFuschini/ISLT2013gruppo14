@@ -40,6 +40,9 @@ public class ViewerCommunicator implements IViewerCommunicator {
 
 	public ISensorData[] receiveData() throws Exception{
 		String msg=comm.read(fdID);
+		if(msg==null){
+			throw new Exception("FanDevice disconnected");
+		}
 		ISensorData[] data = JSONConverter.JSONToSensorData(msg);
 		comm.write(fdID,"ack");
 		return data;
