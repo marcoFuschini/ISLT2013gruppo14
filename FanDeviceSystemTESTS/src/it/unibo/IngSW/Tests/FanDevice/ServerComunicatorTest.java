@@ -38,9 +38,8 @@ public class ServerComunicatorTest {
 					scrivi(s);
 					fdcomm.sendData(new ISensorData[]{new SensorData("nome1", "val1")});
 					ok();
-					fdcomm.sendData(new ISensorData[]{new SensorData("nome1", "val1")});
 					
-					fdcomm.disconnect();
+//					fdcomm.disconnect();
 				} catch (Exception e) {
 					e.printStackTrace();
 					return;
@@ -57,8 +56,9 @@ public class ServerComunicatorTest {
 			ccomm.sendCommand(JSONConverter.commandToJSON("START"));
 			ISensorData[] data1=vcomm1.receiveData();
 			ISensorData[] data2=vcomm2.receiveData();
-			
-			assertTrue(data1.equals(data2));
+			SensorData sd1=(SensorData)data1[0];
+			SensorData sd2=(SensorData)data2[0];
+			assertTrue(sd1.equals(sd2));
 			
 			ccomm.disconnect();
 			vcomm1.disconnect();
