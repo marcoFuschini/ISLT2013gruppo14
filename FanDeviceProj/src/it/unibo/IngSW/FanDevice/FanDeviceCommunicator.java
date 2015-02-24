@@ -19,6 +19,8 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 	protected int cuID;
 	protected List<Integer> viewers;
 	protected boolean run;
+	protected int vPort;
+	protected int cuPort;
 	
 	public FanDeviceCommunicator(){
 		comm=new Communicator();
@@ -38,7 +40,8 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 	 */
 	public void connect(int viewersPort, int controlUnitPort) throws Exception{
 		cuID=comm.connect("server", controlUnitPort);
-
+		cuPort=controlUnitPort;
+		vPort=viewersPort;
 		new Thread(new Runnable(){
 			@Override
 			public void run() {
@@ -46,6 +49,7 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 					try {
 						int vid=comm.connect("server", viewersPort);
 						viewers.add(vid);
+						//run=false;
 						System.out.println("viewer "+vid+" connected");
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -69,6 +73,12 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		try {
+			comm.closeServer(vPort);
+			comm.closeServer(cuPort);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
