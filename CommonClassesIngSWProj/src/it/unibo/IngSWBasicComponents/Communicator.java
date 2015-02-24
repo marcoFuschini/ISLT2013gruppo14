@@ -25,8 +25,9 @@ public class Communicator implements ICommunicator {
 				ss = new ServerSocket(port);
 				servers.put(port, ss);
 			}
+			Socket s=ss.accept();
 			synchronized (this) {
-				ids.add(ss.accept());
+				ids.add(s);
 				return (ids.size() - 1);
 			}
 		} else {
