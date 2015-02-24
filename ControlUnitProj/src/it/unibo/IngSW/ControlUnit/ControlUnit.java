@@ -33,11 +33,19 @@ public class ControlUnit implements IControlUnit {
 	}
 
 	public void connect(String fanDeviceIP, int fanDevicePort){
-		communicator.connect(fanDeviceIP, fanDevicePort);
+		try {
+			communicator.connect(fanDeviceIP, fanDevicePort);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void disconnect(){
-		communicator.disconnect();
+		try {
+			communicator.disconnect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String readCommand(){
@@ -49,7 +57,11 @@ public class ControlUnit implements IControlUnit {
 	 * @param command
 	 */
 	public void sendCommand(String command){
-		communicator.sendCommand(command);
+		try {
+			communicator.sendCommand(command);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -64,7 +76,12 @@ public class ControlUnit implements IControlUnit {
 
 	@Override
 	public ISensorData[] receiveData() {
-		return communicator.receiveData();
+		try {
+			return communicator.receiveData();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
