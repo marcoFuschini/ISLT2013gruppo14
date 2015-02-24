@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import it.unibo.IngSW.ControlUnit.ControlUnitCommunicator;
 import it.unibo.IngSW.FanDevice.FanDeviceCommunicator;
 import it.unibo.IngSW.Viewer.ViewerCommunicator;
+import it.unibo.IngSW.common.SensorData;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 import it.unibo.IngSW.utils.JSONConverter;
 
@@ -35,6 +36,9 @@ public class ServerComunicatorTest {
 					fdcomm.connect(VPORT, CUPORT);
 					String s=fdcomm.receiveCommand();
 					scrivi(s);
+					fdcomm.sendData(new ISensorData[]{new SensorData("nome1", "val1")});
+					ok();
+					fdcomm.sendData(new ISensorData[]{new SensorData("nome1", "val1")});
 					
 					fdcomm.disconnect();
 				} catch (Exception e) {
@@ -63,6 +67,10 @@ public class ServerComunicatorTest {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	private void ok() {
+		System.out.println("ok");
 	}
 
 
