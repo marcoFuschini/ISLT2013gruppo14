@@ -1,11 +1,14 @@
 package it.unibo.IngSW.ControlUnit;
 
+import javax.swing.JSplitPane;
+
 import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnitCommunicator;
 import it.unibo.IngSW.common.interfaces.IButton;
 import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
+import it.unibo.IngSW.utils.JSONConverter;
 
 /**
  * @author Fabio
@@ -53,7 +56,8 @@ public class ControlUnit implements IControlUnit {
 	 * @throws Exception
 	 */
 	public void sendCommand(String command) throws Exception {
-		communicator.sendCommand(command);
+		
+		communicator.sendCommand(JSONConverter.commandToJSON(command));
 	}
 
 	/**

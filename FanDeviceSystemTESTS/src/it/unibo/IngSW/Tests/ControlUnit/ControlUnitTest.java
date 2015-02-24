@@ -127,7 +127,7 @@ public class ControlUnitTest {
 			public void run() {
 				String s;
 				try {
-					server.connect("server", SERVERPORT+1);
+					server.connect("server", SERVERPORT);
 					Thread.sleep(2000);
 					server.write(
 							0,
@@ -154,7 +154,7 @@ public class ControlUnitTest {
 		ISensorData[] data;
 
 		try {
-			c.connect("127.0.0.1", SERVERPORT+1);
+			c.connect("127.0.0.1", SERVERPORT);
 			data = c.receiveData();
 			c.updateData(data);
 			assertTrue("val3".equals(el1value));
@@ -184,13 +184,16 @@ public class ControlUnitTest {
 
 					server.connect("server", SERVERPORT);
 					s = server.read(0);
+					System.out.println(s);
 					s=JSONConverter.JSONToCommand(s);
 					assertTrue("START".equals(s));
 					server.disconnect(0);
 					server.closeServer(SERVERPORT);
 				} catch (Exception e) {
+					fail("exception non prevista");
 					e.printStackTrace();
 				}
+				System.out.println("ok");
 			}
 		});
 		t.start();
@@ -204,7 +207,6 @@ public class ControlUnitTest {
 			testbtns[0] = Boolean.TRUE;
 
 			String s = c.readCommand();
-			ok();
 			assertTrue("START".equals(s));
 			c.sendCommand(s);
 
