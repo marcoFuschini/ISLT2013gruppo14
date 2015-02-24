@@ -16,12 +16,13 @@ public interface IViewer {
 	 * 
 	 * @param fanDevicePort
 	 * @param fanDeviceIP
+	 * @throws Exception 
 	 */
-	public void connect(int fanDevicePort, String fanDeviceIP);
+	public void connect(int fanDevicePort, String fanDeviceIP) throws Exception;
 
-	public void diconnect();
+	public void diconnect() throws Exception;
 
-	public ISensorData[] receiveData();
+	public ISensorData[] receiveData() throws Exception;
 
 	/**
 	 * 

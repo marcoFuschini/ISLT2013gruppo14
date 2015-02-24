@@ -27,11 +27,13 @@ public class ViewerMain {
 	private static final int MAXCOLS = 5;
 
 	private static IViewer viewer;
-	private static IViewerCommunicator communicator;
 	private static JPanel mainPane;
 	private static Display display;
 	private static IElementDisplay[] displayEls = {new TachometerDisplay(),new ThermometerDisplay()};
 
+	private static void scrivi(String s){
+		System.out.println(s);
+	}
 	private static void creaGUI() {
 		// IMPLEMENTAZIONE SPECIFICA
 
@@ -68,19 +70,44 @@ public class ViewerMain {
 	}
 	
 	public static void main(String[] args) {
-		communicator = new ViewerCommunicator();
 		display=new Display(displayEls);
-		viewer = new Viewer(communicator,display);
+		viewer = new Viewer(display);
 		creaGUI();
 		
-		viewer.connect(Integer.parseInt(args[1]), args[0]);
+		try {
+			viewer.connect(Integer.parseInt(args[1]), args[0]);
+		} catch (NumberFormatException e) {
+			scrivi("Porta non valida");
+			e.printStackTrace();
+			return;
+		} catch (Exception e) {
+			scrivi("Connection timeout");
+			e.printStackTrace();
+			esci();
+		}
 		ISensorData[] data;
 		while(display.isVisible()){
-			data=viewer.receiveData();
-			viewer.updateData(data);
+			try {
+				data=viewer.receiveData();
+				viewer.updateData(data);
+			} catch (Exception e) {
+				scrivi("Receive data error");
+				e.printStackTrace();
+				esci();
+			}			
 		}
-			viewer.diconnect();
+			try {
+				viewer.diconnect();
+			} catch (Exception e) {
+				scrivi("Disconnection error");
+				e.printStackTrace();
+			}
+			esci();//mi assicuro che venga chiusa l'interfaccia grafica a seguito di errori
 	}
 
+	public static void esci(){
+		display.dispose();
+		System.exit(0);
+	}
 
 }

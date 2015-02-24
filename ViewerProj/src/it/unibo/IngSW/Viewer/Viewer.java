@@ -15,40 +15,28 @@ public class Viewer implements IViewer {
 	private IViewerCommunicator communicator;
 	private IDisplay display;
 	
-	public Viewer(IViewerCommunicator communicator, IDisplay display){
-		this.communicator=communicator;
+	public Viewer(IDisplay display){
+		this.communicator=new ViewerCommunicator();
 		this.display=display;
 	}
 
-	public void connect(int fanDevicePort, String fanDeviceIP){
-		try {
+	public void connect(int fanDevicePort, String fanDeviceIP) throws Exception{
 			communicator.connect(fanDeviceIP, fanDevicePort);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
-	public void diconnect(){
-		try {
+	public void diconnect() throws Exception{
 			communicator.disconnect();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
-	public ISensorData[] receiveData(){
-		try {
+	public ISensorData[] receiveData() throws Exception{
 			return communicator.receiveData();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
 	}
 
 	public void updateData(ISensorData[] data){
 		for(ISensorData d:data){
 			display.writeData(d.getValue(), d.getName());
 		}
+		display.refresh();
 	}
 
 }
