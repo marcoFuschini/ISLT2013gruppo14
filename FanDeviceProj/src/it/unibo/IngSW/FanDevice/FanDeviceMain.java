@@ -65,7 +65,9 @@ public class FanDeviceMain {
 						Double temp=null;
 						Double oldTemp=null;
 						ISensorData[] data =fd.getSensorData();
+						scrivi("dati ottenuti");
 						fd.sendData(data);
+						scrivi("dati inviati");
 						
 						for(ISensorData d:data){
 							if(d.getName().equals(SensorName.TEMPERATURE)){

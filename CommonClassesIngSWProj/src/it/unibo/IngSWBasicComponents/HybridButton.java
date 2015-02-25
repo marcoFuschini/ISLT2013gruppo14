@@ -13,6 +13,7 @@ import javax.swing.JButton;
 public class HybridButton extends JButton implements IButton{
 
 	private PhysicalButton trueButton;
+	private HybridButton parent=this;
 
 	public HybridButton(String s,PhysicalButton truebutton) {
 		super(s);
@@ -22,7 +23,7 @@ public class HybridButton extends JButton implements IButton{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				truebutton.keyReleased(new KeyEvent(null, 0, System.currentTimeMillis(), 0, 
+				truebutton.keyReleased(new KeyEvent(parent, 0, System.currentTimeMillis(), 0, 
 						Character.getNumericValue(truebutton.getKeyBinded()), truebutton.getKeyBinded()));
 			}
 

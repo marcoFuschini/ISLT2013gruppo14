@@ -183,8 +183,9 @@ public class ControlUnitTest {
 				try {
 
 					server.connect("server", SERVERPORT);
+					ok("server connesso");
 					s = server.read(0);
-					System.out.println(s);
+					ok("Server ha letto "+s);
 					s=JSONConverter.JSONToCommand(s);
 					assertTrue("START".equals(s));
 					server.disconnect(0);
@@ -204,11 +205,14 @@ public class ControlUnitTest {
 		try {
 
 			c.connect("127.0.0.1", SERVERPORT);
+			ok("client connesso");
 			testbtns[0] = Boolean.TRUE;
 
 			String s = c.readCommand();
+			ok("comando letto "+s);
 			assertTrue("START".equals(s));
 			c.sendCommand(s);
+			ok("comando inviato");
 
 		} catch (Exception e) {
 			fail("errore di comunicazione");
@@ -216,7 +220,11 @@ public class ControlUnitTest {
 		}
 	}
 
-	private void ok() {
-		System.out.println("ok");
+	private void ok(String s) {
+		System.out.println("ok "+s);
+	}
+	
+	private void ok(){
+		ok("");
 	}
 }

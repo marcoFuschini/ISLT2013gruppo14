@@ -31,7 +31,7 @@ public class ControlUnit implements IControlUnit {
 		this.display = display;
 		this.buttons = buttons;
 		this.controlcmdconsole = new ControlCmdConsole();
-		this.inputpoller = new InputPoller(controlcmdconsole, buttons);
+		this.inputpoller = new InputPoller(controlcmdconsole, this.buttons);
 	}
 
 	public void connect(String fanDeviceIP, int fanDevicePort) throws Exception {
@@ -42,7 +42,7 @@ public class ControlUnit implements IControlUnit {
 	public void disconnect() throws Exception {
 
 		communicator.disconnect();
-
+		inputpoller.kill();
 	}
 
 	public String readCommand() {
