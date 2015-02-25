@@ -1,4 +1,5 @@
 package it.unibo.IngSW.FanDevice.interfaces;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.FanSpeed;
 import it.unibo.IngSW.common.interfaces.IFanDevice;
 import it.unibo.IngSW.common.interfaces.ISensorData;
@@ -33,7 +34,7 @@ public interface IFanDeviceDecorator {
 	
 	public void stop();
 
-	public String receiveCommand() throws Exception;
+	public Command receiveCommand() throws Exception;
 
 	/**
 	 * 

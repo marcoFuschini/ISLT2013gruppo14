@@ -1,5 +1,6 @@
 package it.unibo.IngSW.ControlUnit;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnitCommunicator;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.interfaces.ICommunicator;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 import it.unibo.IngSW.utils.JSONConverter;
@@ -52,7 +53,7 @@ public class ControlUnitCommunicator implements IControlUnitCommunicator {
 	 * @param command
 	 * @throws Exception 
 	 */
-	public void sendCommand(String command) throws Exception{
+	public void sendCommand(Command command) throws Exception{
 		String msg=JSONConverter.commandToJSON(command);
 		comm.write(fdID, msg);
 	}

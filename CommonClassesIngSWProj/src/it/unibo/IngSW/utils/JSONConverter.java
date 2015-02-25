@@ -1,10 +1,10 @@
 package it.unibo.IngSW.utils;
 
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.SensorData;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JSONConverter {
@@ -33,17 +33,17 @@ public class JSONConverter {
 		return data;
 	}
 	
-	public static String commandToJSON(String command) throws Exception{
+	public static String commandToJSON(Command command) throws Exception{
 		JSONObject jobj=new JSONObject();
 		jobj.put("command", command);
 		return jobj.toString();
 	}
 	
-	public static String JSONToCommand(String json) throws Exception{
+	public static Command JSONToCommand(String json) throws Exception{
 		JSONObject jobj;
-		String command;
+		Command command;
 		jobj=new JSONObject(json);
-		command=jobj.getString("command");
+		command=(Command)jobj.get("command");
 		return command;
 	}
 }

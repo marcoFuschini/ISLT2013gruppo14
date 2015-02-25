@@ -2,6 +2,7 @@ package it.unibo.IngSW.FanDevice;
 import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceCommunicator;
 import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceDecorator;
 import it.unibo.IngSW.FanDevice.interfaces.ISensorDataBuffer;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.FanSpeed;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
@@ -72,7 +73,7 @@ public class FanDeviceDecorator implements IFanDeviceDecorator {
 		}
 	}
 
-	public String receiveCommand() throws Exception{
+	public Command receiveCommand() throws Exception{
 		return comm.receiveCommand();
 	}
 

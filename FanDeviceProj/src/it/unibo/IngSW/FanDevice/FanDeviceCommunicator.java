@@ -1,5 +1,6 @@
 package it.unibo.IngSW.FanDevice;
 import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceCommunicator;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.interfaces.ICommunicator;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 import it.unibo.IngSW.utils.JSONConverter;
@@ -83,12 +84,12 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 		}
 	}
 
-	public String receiveCommand() throws Exception{
+	public Command receiveCommand() throws Exception{
 		String msg=comm.read(cuID);
 		if(msg==null){
 			throw new Exception("ControlUnit disconnected");
 		}
-		String command=JSONConverter.JSONToCommand(msg);
+		Command command=JSONConverter.JSONToCommand(msg);
 		return command;
 	}
 

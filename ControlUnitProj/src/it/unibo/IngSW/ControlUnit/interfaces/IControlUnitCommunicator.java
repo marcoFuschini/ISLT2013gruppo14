@@ -1,4 +1,5 @@
 package it.unibo.IngSW.ControlUnit.interfaces;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
@@ -27,6 +28,6 @@ public interface IControlUnitCommunicator {
 	 * @param command
 	 * @throws Exception 
 	 */
-	public void sendCommand(String command) throws Exception;
+	public void sendCommand(Command command) throws Exception;
 
 }

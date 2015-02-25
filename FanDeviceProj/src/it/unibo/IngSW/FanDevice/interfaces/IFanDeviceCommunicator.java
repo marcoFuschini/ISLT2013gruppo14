@@ -1,4 +1,5 @@
 package it.unibo.IngSW.FanDevice.interfaces;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.interfaces.ICommunicator;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
@@ -21,7 +22,7 @@ public interface IFanDeviceCommunicator {
 
 	public void disconnect();
 
-	public String receiveCommand() throws Exception;
+	public Command receiveCommand() throws Exception;
 
 	/**
 	 * 
