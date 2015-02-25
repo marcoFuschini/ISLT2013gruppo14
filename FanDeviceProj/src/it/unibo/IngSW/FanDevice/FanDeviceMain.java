@@ -75,7 +75,7 @@ public class FanDeviceMain {
 						
 					}
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					fd.disconnect();
 					e.printStackTrace();
 				}
 			}
@@ -112,7 +112,7 @@ public class FanDeviceMain {
 			}
 		}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			fd.disconnect();
 			e.printStackTrace();
 		}
 	}
