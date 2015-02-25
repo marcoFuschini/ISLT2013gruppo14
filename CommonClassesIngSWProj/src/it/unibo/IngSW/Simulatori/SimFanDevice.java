@@ -8,7 +8,7 @@ public class SimFanDevice implements IFanDevice {
 	private FanSpeed speed;
 	
 	public SimFanDevice() {
-		
+		speed=FanSpeed.ZEROSPEED;
 	}
 	
 	@Override

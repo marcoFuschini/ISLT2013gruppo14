@@ -4,6 +4,7 @@ import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceDecorator;
 import it.unibo.IngSW.FanDevice.interfaces.ISensorDataBuffer;
 import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.FanSpeed;
+import it.unibo.IngSW.common.interfaces.IFanDevice;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
@@ -15,14 +16,15 @@ public class FanDeviceDecorator implements IFanDeviceDecorator {
 
 	private ISensorDataBuffer buffer;
 	private IFanDeviceCommunicator comm;
-	private FanDevice fd;
+	private IFanDevice fd;
 	private FanSpeed currentSpeed;
 	private boolean active;
 	
-	public FanDeviceDecorator(ISensorDataBuffer buf){
+	public FanDeviceDecorator(ISensorDataBuffer buf,IFanDevice fd){
 		comm=new FanDeviceCommunicator();
 		buffer=buf;
-		fd=new FanDevice();
+//		fd=new FanDevice();
+		this.fd=fd;
 		currentSpeed=FanSpeed.ZEROSPEED;
 		active=false;
 	}

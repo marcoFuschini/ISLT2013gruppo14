@@ -46,7 +46,7 @@ public class SensorPoller implements ISensorPoller {
 				data.add(new SensorData(sensor.getName(),""+sensor.getValue()));
 			}
 			try {
-				buf.put((ISensorData[])data.toArray());
+				buf.put((ISensorData[])(data.toArray()));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

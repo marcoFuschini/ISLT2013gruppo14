@@ -103,6 +103,15 @@ public class ControlUnitMain {
 		// init
 		display = new Display(displayEls);
 		controlUnit = new ControlUnit(display, buttons);
+		try {
+			controlUnit.connect(args[0],Integer.parseInt(args[1]));
+		} catch (NumberFormatException e1) {
+			e1.printStackTrace();
+			return;
+		} catch (Exception e1) {
+			e1.printStackTrace();
+			return;
+		}
 		creaGUI();
 		Thread inputSenderT = new Thread(new Runnable() {
 
@@ -114,9 +123,12 @@ public class ControlUnitMain {
 
 					try {
 						cmd = controlUnit.readCommand();
+						scrivi("ricevuto comando: "+cmd);
 						json = JSONConverter.commandToJSON(cmd);
 						controlUnit.sendCommand(json);
+						scrivi("comando inviato");
 					} catch (Exception e) {
+						scrivi("eccezione catchata, muoio");
 						kill();
 						e.printStackTrace();
 					}
@@ -128,8 +140,11 @@ public class ControlUnitMain {
 		do{
 			try{
 			data=controlUnit.receiveData();
+			scrivi("dati ricevuti ");
 			controlUnit.updateData(data);
+			scrivi("dati scritti");
 			}catch (Exception e){
+				scrivi("eccezione catchata, muoio");
 				kill();
 				e.printStackTrace();
 			}
@@ -137,6 +152,10 @@ public class ControlUnitMain {
 		kill();
 	}
 	
+	protected static void scrivi(String string) {
+		System.out.println(string);
+	}
+
 	private static void kill(){
 		inputSenderRun=false;
 		datReceiverRun=false;

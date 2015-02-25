@@ -3,9 +3,13 @@ import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceDecorator;
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
 import it.unibo.IngSW.FanDevice.interfaces.ISensorDataBuffer;
 import it.unibo.IngSW.FanDevice.interfaces.ISensorPoller;
+import it.unibo.IngSW.Simulatori.SimFanDevice;
+import it.unibo.IngSW.Simulatori.SimTachometer;
+import it.unibo.IngSW.Simulatori.SimThermometer;
 import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.FanSpeed;
 import it.unibo.IngSW.common.SensorName;
+import it.unibo.IngSW.common.interfaces.IFanDevice;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**
@@ -17,7 +21,8 @@ public class FanDeviceMain {
 
 	private static final double TLIMIT1=27.0;
 	private static final double TLIMIT2=30.0;
-	
+	private static final int CUPORT=10001;
+	private static final int VPORT=10002;
 	
 	public FanDeviceMain(){
 
@@ -33,15 +38,18 @@ public class FanDeviceMain {
 	 */
 	public static void main(String[] args){
 		ISensorDataBuffer buffer=new SensorDataBuffer(2048);
-		IFanDeviceDecorator fd=new FanDeviceDecorator(buffer);
-		ISensor tach=new Sensor(new Tachometer(), SensorName.SPEED.toString());
-		ISensor term=new Sensor(new Thermometer(), SensorName.TEMPERATURE.toString());
+		IFanDevice fan=new SimFanDevice();
+		IFanDeviceDecorator fd=new FanDeviceDecorator(buffer,fan);
+		ISensor tach=new Sensor(new SimTachometer((SimFanDevice)fan), SensorName.SPEED.toString());
+		ISensor term=new Sensor(new SimThermometer((SimFanDevice)fan,20,1), SensorName.TEMPERATURE.toString());
 		ISensor[] tachArray=new ISensor[]{tach};
 		ISensor[] termArray=new ISensor[]{term};
 		ISensorPoller tachPoller=new SensorPoller(tachArray, buffer, 0);
 		ISensorPoller termPoller=new SensorPoller(termArray, buffer, 1500);
 		try {
-			fd.connect(10001, 10002);
+			scrivi("Mi metto in ascolto");
+			fd.connect(VPORT,CUPORT);
+			scrivi("CU connected");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,6 +93,7 @@ public class FanDeviceMain {
 		try {
 			while(true){
 			String cmd=fd.receiveCommand();
+			scrivi("ricevuto comando "+cmd);
 			Command command=Command.StringToCommand(cmd);
 			switch(command){
 			case START:
@@ -115,6 +124,10 @@ public class FanDeviceMain {
 			fd.disconnect();
 			e.printStackTrace();
 		}
+	}
+
+	private static void scrivi(String string) {
+		System.out.println(string);
 	}
 
 }
