@@ -2,6 +2,7 @@ package it.unibo.IngSW.utils;
 
 import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.SensorData;
+import it.unibo.IngSW.common.SensorName;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 import org.json.JSONArray;
@@ -28,7 +29,7 @@ public class JSONConverter {
 		data=new SensorData[jarr.length()]; 
 		for(int i=0;i<jarr.length();i++){
 			jobj=jarr.getJSONObject(i);
-			data[i]=new SensorData(jobj.getString("name"),jobj.getString("value"));
+			data[i]=new SensorData((SensorName)jobj.get("name"),jobj.getString("value"));
 		}
 		return data;
 	}

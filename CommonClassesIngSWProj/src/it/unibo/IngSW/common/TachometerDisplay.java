@@ -21,7 +21,7 @@ public class TachometerDisplay extends JLabel implements IElementDisplay {
 	}
 
 	public String getName(){
-		return SensorsNames.SPEED.toString();
+		return SensorName.SPEED.toString();
 	}
 
 	public void refresh(){

@@ -1,5 +1,7 @@
 package it.unibo.IngSW.common.interfaces;
 
+import it.unibo.IngSW.common.SensorName;
+
 /**
  * @author Fabio
  * @version 1.0
@@ -7,7 +9,7 @@ package it.unibo.IngSW.common.interfaces;
  */
 public interface ISensorData {
 
-	public String getName();
+	public SensorName getName();
 
 	public String getValue();
 
@@ -15,7 +17,7 @@ public interface ISensorData {
 	 * 
 	 * @param name
 	 */
-	public void setName(String name);
+	public void setName(SensorName name);
 
 	/**
 	 * 

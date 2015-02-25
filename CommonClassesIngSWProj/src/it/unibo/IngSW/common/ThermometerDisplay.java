@@ -21,7 +21,7 @@ public class ThermometerDisplay extends JLabel implements IElementDisplay {
 	}
 
 	public String getName(){
-		return SensorsNames.TEMPERATURE.toString();
+		return SensorName.TEMPERATURE.toString();
 	}
 
 	public void refresh(){
