@@ -15,6 +15,10 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class FanDeviceMain {
 
+	private static final double TLIMIT1=27.0;
+	private static final double TLIMIT2=30.0;
+	
+	
 	public FanDeviceMain(){
 
 	}
@@ -28,7 +32,7 @@ public class FanDeviceMain {
 	 * @param args
 	 */
 	public static void main(String[] args){
-		ISensorDataBuffer buffer=new SensorDataBuffer();
+		ISensorDataBuffer buffer=new SensorDataBuffer(2048);
 		IFanDeviceDecorator fd=new FanDeviceDecorator(buffer);
 		ISensor tach=new Sensor(new Tachometer(), SensorName.SPEED.toString());
 		ISensor term=new Sensor(new Thermometer(), SensorName.TEMPERATURE.toString());
@@ -50,8 +54,25 @@ public class FanDeviceMain {
 			public void run() {
 				try {
 					while(true){
+						Double temp=null;
+						Double oldTemp=null;
 						ISensorData[] data =fd.getSensorData();
 						fd.sendData(data);
+						
+						for(ISensorData d:data){
+							if(d.getName().equals(SensorName.TEMPERATURE)){
+								temp=Double.parseDouble(d.getValue());
+								if(oldTemp!=null){
+									if(oldTemp<=TLIMIT2 && temp>TLIMIT2){
+										fd.incSpeed();
+									}else if(oldTemp<=TLIMIT1 && temp>TLIMIT1){
+										fd.stop();
+									}									
+								}
+								oldTemp=temp;
+							}
+						}
+						
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -66,25 +87,25 @@ public class FanDeviceMain {
 			String cmd=fd.receiveCommand();
 			Command command=Command.StringToCommand(cmd);
 			switch(command){
-			case Command.START:
+			case START:
 				fd.start();
 				break;
-			case Command.STOP:
+			case STOP:
 				fd.stop();
 				break;
-			case Command.INCSPEED:
+			case INCSPEED:
 				fd.incSpeed();
 				break;
-			case Command.DECSPEED:
+			case DECSPEED:
 				fd.decSpeed();
 				break;
-			case Command.LOWSPEED:
+			case LOWSPEED:
 				fd.setSpeed(FanSpeed.LOWSPEED);
 				break;
-			case Command.MEDIUMSPEED:
+			case MEDIUMSPEED:
 				fd.setSpeed(FanSpeed.MEDIUMSPEED);
 				break;
-			case Command.HIGHSPEED:
+			case HIGHSPEED:
 				fd.setSpeed(FanSpeed.HIGHSPEED);
 				break;
 			default:
