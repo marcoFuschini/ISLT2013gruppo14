@@ -5,6 +5,7 @@ import it.unibo.IngSW.ControlUnit.ControlUnitCommunicator;
 import it.unibo.IngSW.FanDevice.FanDeviceDecorator;
 import it.unibo.IngSW.FanDevice.SensorDataBuffer;
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
+import it.unibo.IngSW.Simulatori.SimFanDevice;
 import it.unibo.IngSW.Viewer.ViewerCommunicator;
 import it.unibo.IngSW.common.FanSpeed;
 import it.unibo.IngSW.common.SensorData;
@@ -26,6 +27,7 @@ public class FanDeviceTest {
 	private FanDeviceDecorator fandec;
 	private SensorDataBuffer buff=new SensorDataBuffer(100);
 	private ISensorData[] datatosend=new ISensorData[]{new SensorData("nome", "val")};
+	private IFanDevice fan=new SimFanDevice();
 	
 	private void ok(String s){
 		System.out.println("OK "+s);
@@ -88,7 +90,7 @@ public class FanDeviceTest {
 		});
 		
 		
-		fandec=new FanDeviceDecorator(buff);
+		fandec=new FanDeviceDecorator(buff,fan);
 		try {
 			cu.start();
 			fandec.connect(VPORT, CUPORT);
