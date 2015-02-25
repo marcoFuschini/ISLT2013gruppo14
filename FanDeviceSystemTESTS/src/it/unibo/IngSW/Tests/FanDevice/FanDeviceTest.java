@@ -27,6 +27,14 @@ public class FanDeviceTest {
 	private SensorDataBuffer buff=new SensorDataBuffer(100);
 	private ISensorData[] datatosend=new ISensorData[]{new SensorData("nome", "val")};
 	
+	private void ok(String s){
+		System.out.println("OK "+s);
+	}
+	
+	private void ok(){
+		ok("");
+	}
+	
 	@Test
 	public void test() {
 		Thread cu= new Thread(new Runnable() {
@@ -37,8 +45,9 @@ public class FanDeviceTest {
 				try {
 					cucomm.connect("127.0.0.1", CUPORT);
 					cucomm.sendCommand("START");
+					ok();
 					ISensorData[] data=cucomm.receiveData();
-					assertTrue(datatosend.equals(data[0]));
+					assertTrue(((SensorData)datatosend[0]).equals(data[0]));
 				} catch (Exception e) {
 					fail("eccezione non prevista");
 					e.printStackTrace();
@@ -62,7 +71,7 @@ public class FanDeviceTest {
 				try {
 					vcomm.connect("127.0.0.1", VPORT);
 					ISensorData[] data=vcomm.receiveData();
-					assertTrue(datatosend.equals(data[0]));
+					assertTrue(((SensorData)datatosend[0]).equals(data[0]));
 				} catch (Exception e) {
 					fail("eccezione non prevista");
 					e.printStackTrace();
@@ -81,10 +90,11 @@ public class FanDeviceTest {
 		
 		fandec=new FanDeviceDecorator(buff);
 		try {
-			fandec.connect(VPORT, CUPORT);
 			cu.start();
+			fandec.connect(VPORT, CUPORT);
 			v1.start();
 			String s=fandec.receiveCommand();
+			ok(s);
 			assertTrue(s.equals("START"));
 			fandec.sendData(datatosend);
 			fandec.disconnect();
