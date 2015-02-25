@@ -1,6 +1,6 @@
 package it.unibo.IngSWBasicComponents;
 
-import it.unibo.IngSW.common.SensorsNames;
+import it.unibo.IngSW.common.SensorName;
 import it.unibo.IngSW.common.interfaces.IElementDisplay;
 import it.unibo.IngSW.common.interfaces.ILed;
 
@@ -52,6 +52,6 @@ public class VirtualLed extends JLabel implements ILed,IElementDisplay {
 
 	@Override
 	public String getName(){
-		return SensorsNames.STATE.toString();
+		return SensorName.STATE.toString();
 	}
 }

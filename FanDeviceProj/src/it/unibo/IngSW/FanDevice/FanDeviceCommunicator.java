@@ -1,5 +1,6 @@
 package it.unibo.IngSW.FanDevice;
 import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceCommunicator;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.interfaces.ICommunicator;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 import it.unibo.IngSW.utils.JSONConverter;

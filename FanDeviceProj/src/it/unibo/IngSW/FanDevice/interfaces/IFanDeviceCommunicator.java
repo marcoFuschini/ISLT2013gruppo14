@@ -1,4 +1,5 @@
 package it.unibo.IngSW.FanDevice.interfaces;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.interfaces.ICommunicator;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 

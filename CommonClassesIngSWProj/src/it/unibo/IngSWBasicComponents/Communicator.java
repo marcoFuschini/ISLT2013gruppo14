@@ -52,6 +52,8 @@ public class Communicator implements ICommunicator {
 		arraylistTest(connectionId);
 		Socket s = ids.get(connectionId);
 		s.close();
+		pws.get(connectionId).close();
+		brs.get(connectionId).close();
 		ids.set(connectionId,null);
 		pws.set(connectionId,null);
 		brs.set(connectionId,null);

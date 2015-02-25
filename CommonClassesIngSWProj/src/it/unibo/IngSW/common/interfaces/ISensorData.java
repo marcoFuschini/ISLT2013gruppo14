@@ -1,5 +1,7 @@
 package it.unibo.IngSW.common.interfaces;
 
+import it.unibo.IngSW.common.SensorName;
+
 /**
  * @author Fabio
  * @version 1.0

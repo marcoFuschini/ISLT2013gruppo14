@@ -1,10 +1,11 @@
 package it.unibo.IngSW.utils;
 
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.SensorData;
+import it.unibo.IngSW.common.SensorName;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 public class JSONConverter {

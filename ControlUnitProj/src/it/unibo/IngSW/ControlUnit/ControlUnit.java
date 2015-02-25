@@ -1,10 +1,9 @@
 package it.unibo.IngSW.ControlUnit;
 
-import javax.swing.JSplitPane;
-
 import it.unibo.IngSW.ControlUnit.interfaces.IControlCmdConsole;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnit;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnitCommunicator;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.interfaces.IButton;
 import it.unibo.IngSW.common.interfaces.IDisplay;
 import it.unibo.IngSW.common.interfaces.ISensorData;
@@ -57,7 +56,7 @@ public class ControlUnit implements IControlUnit {
 	 */
 	public void sendCommand(String command) throws Exception {
 		
-		communicator.sendCommand(JSONConverter.commandToJSON(command));
+		communicator.sendCommand(command);
 	}
 
 	/**
@@ -66,7 +65,7 @@ public class ControlUnit implements IControlUnit {
 	 */
 	public void updateData(ISensorData[] data) {
 		for (ISensorData d : data) {
-			display.writeData(d.getValue(), d.getName());
+			display.writeData(d.getValue(), d.getName().toString());
 		}
 		display.refresh();
 	}

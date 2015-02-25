@@ -1,5 +1,6 @@
 package it.unibo.IngSW.ControlUnit;
 import it.unibo.IngSW.ControlUnit.interfaces.IControlUnitCommunicator;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.interfaces.ICommunicator;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 import it.unibo.IngSW.utils.JSONConverter;

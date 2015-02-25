@@ -1,4 +1,5 @@
 package it.unibo.IngSW.ControlUnit.interfaces;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
 /**

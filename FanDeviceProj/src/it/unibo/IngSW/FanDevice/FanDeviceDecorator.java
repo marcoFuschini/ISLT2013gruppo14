@@ -2,6 +2,7 @@ package it.unibo.IngSW.FanDevice;
 import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceCommunicator;
 import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceDecorator;
 import it.unibo.IngSW.FanDevice.interfaces.ISensorDataBuffer;
+import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.FanSpeed;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
