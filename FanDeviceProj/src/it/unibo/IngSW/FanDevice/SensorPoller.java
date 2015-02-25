@@ -6,8 +6,6 @@ import it.unibo.IngSW.FanDevice.interfaces.ISensorPoller;
 import it.unibo.IngSW.common.SensorData;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
-import java.util.ArrayList;
-
 /**
  * @author Fabio
  * @version 1.0
@@ -41,12 +39,12 @@ public class SensorPoller implements ISensorPoller {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			ArrayList<ISensorData> data=new ArrayList<ISensorData>(1);
-			for(ISensor sensor:sensors){
-				data.add(new SensorData(sensor.getName(),""+sensor.getValue()));
+			ISensorData[] data=new SensorData[sensors.length];
+			for(int i=0;i<sensors.length;i++){
+				data[i]=new SensorData(sensors[i].getName(),""+sensors[i].getValue());
 			}
 			try {
-				buf.put((ISensorData[])(data.toArray()));
+				buf.put(data);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
