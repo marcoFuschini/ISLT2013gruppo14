@@ -117,7 +117,7 @@ public class FanDeviceDecorator implements IFanDeviceDecorator {
 	}
 
 	@Override
-	public void disconnect() throws Exception {
+	public void disconnect() {
 		comm.disconnect();
 	}
 
