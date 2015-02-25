@@ -124,7 +124,8 @@ public class ControlUnitMain {
 					try {
 						cmd = controlUnit.readCommand();
 						scrivi("ricevuto comando: "+cmd);
-						json = JSONConverter.commandToJSON(cmd);
+//						json = JSONConverter.commandToJSON(cmd);
+						json=cmd;
 						controlUnit.sendCommand(json);
 						scrivi("comando inviato");
 					} catch (Exception e) {
