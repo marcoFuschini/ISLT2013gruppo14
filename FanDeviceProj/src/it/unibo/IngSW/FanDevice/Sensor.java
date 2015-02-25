@@ -1,5 +1,6 @@
 package it.unibo.IngSW.FanDevice;
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
+import it.unibo.IngSW.common.SensorName;
 import it.unibo.IngSW.common.interfaces.IBasicSensor;
 
 /**

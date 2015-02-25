@@ -34,7 +34,7 @@ public interface IFanDeviceDecorator {
 	
 	public void stop();
 
-	public Command receiveCommand() throws Exception;
+	public String receiveCommand() throws Exception;
 
 	/**
 	 * 

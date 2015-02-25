@@ -73,7 +73,7 @@ public class FanDeviceDecorator implements IFanDeviceDecorator {
 		}
 	}
 
-	public Command receiveCommand() throws Exception{
+	public String receiveCommand() throws Exception{
 		return comm.receiveCommand();
 	}
 

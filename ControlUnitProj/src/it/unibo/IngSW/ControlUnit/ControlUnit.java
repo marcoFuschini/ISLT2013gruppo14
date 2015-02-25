@@ -54,7 +54,7 @@ public class ControlUnit implements IControlUnit {
 	 * @param command
 	 * @throws Exception
 	 */
-	public void sendCommand(Command command) throws Exception {
+	public void sendCommand(String command) throws Exception {
 		
 		communicator.sendCommand(command);
 	}
@@ -65,7 +65,7 @@ public class ControlUnit implements IControlUnit {
 	 */
 	public void updateData(ISensorData[] data) {
 		for (ISensorData d : data) {
-			display.writeData(d.getValue(), d.getName());
+			display.writeData(d.getValue(), d.getName().toString());
 		}
 		display.refresh();
 	}

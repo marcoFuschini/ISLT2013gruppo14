@@ -84,12 +84,12 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 		}
 	}
 
-	public Command receiveCommand() throws Exception{
+	public String receiveCommand() throws Exception{
 		String msg=comm.read(cuID);
 		if(msg==null){
 			throw new Exception("ControlUnit disconnected");
 		}
-		Command command=JSONConverter.JSONToCommand(msg);
+		String command=JSONConverter.JSONToCommand(msg);
 		return command;
 	}
 

@@ -22,7 +22,7 @@ public interface IFanDeviceCommunicator {
 
 	public void disconnect();
 
-	public Command receiveCommand() throws Exception;
+	public String receiveCommand() throws Exception;
 
 	/**
 	 * 

@@ -28,6 +28,6 @@ public interface IControlUnitCommunicator {
 	 * @param command
 	 * @throws Exception 
 	 */
-	public void sendCommand(Command command) throws Exception;
+	public void sendCommand(String command) throws Exception;
 
 }

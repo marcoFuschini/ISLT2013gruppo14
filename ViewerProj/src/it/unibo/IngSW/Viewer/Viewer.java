@@ -34,7 +34,7 @@ public class Viewer implements IViewer {
 
 	public void updateData(ISensorData[] data){
 		for(ISensorData d:data){
-			display.writeData(d.getValue(), d.getName());
+			display.writeData(d.getValue(), d.getName().toString());
 		}
 		display.refresh();
 	}
