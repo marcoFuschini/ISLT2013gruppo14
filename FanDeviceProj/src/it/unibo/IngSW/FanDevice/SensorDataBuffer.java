@@ -14,8 +14,8 @@ public class SensorDataBuffer implements ISensorDataBuffer {
 
 	private ArrayBlockingQueue<ISensorData[]> buf;
 	
-	public SensorDataBuffer(){
-		buf=new ArrayBlockingQueue<ISensorData[]>(2048);
+	public SensorDataBuffer(int capacity){
+		buf=new ArrayBlockingQueue<ISensorData[]>(capacity);
 	}
 
 	public void finalize() throws Throwable {
