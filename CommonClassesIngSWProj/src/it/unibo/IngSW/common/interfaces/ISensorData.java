@@ -9,7 +9,7 @@ import it.unibo.IngSW.common.SensorName;
  */
 public interface ISensorData {
 
-	public SensorName getName();
+	public String getName();
 
 	public String getValue();
 
@@ -17,7 +17,7 @@ public interface ISensorData {
 	 * 
 	 * @param name
 	 */
-	public void setName(SensorName name);
+	public void setName(String name);
 
 	/**
 	 * 

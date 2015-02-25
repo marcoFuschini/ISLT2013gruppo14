@@ -29,22 +29,22 @@ public class JSONConverter {
 		data=new SensorData[jarr.length()]; 
 		for(int i=0;i<jarr.length();i++){
 			jobj=jarr.getJSONObject(i);
-			data[i]=new SensorData((SensorName)jobj.get("name"),jobj.getString("value"));
+			data[i]=new SensorData(jobj.getString("name"),jobj.getString("value"));
 		}
 		return data;
 	}
 	
-	public static String commandToJSON(Command command) throws Exception{
+	public static String commandToJSON(String command) throws Exception{
 		JSONObject jobj=new JSONObject();
 		jobj.put("command", command);
 		return jobj.toString();
 	}
 	
-	public static Command JSONToCommand(String json) throws Exception{
+	public static String JSONToCommand(String json) throws Exception{
 		JSONObject jobj;
-		Command command;
+		String command;
 		jobj=new JSONObject(json);
-		command=(Command)jobj.get("command");
+		command=jobj.getString("command");
 		return command;
 	}
 }
