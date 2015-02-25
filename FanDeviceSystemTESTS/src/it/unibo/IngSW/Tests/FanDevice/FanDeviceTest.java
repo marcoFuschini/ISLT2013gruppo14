@@ -1,10 +1,15 @@
 package it.unibo.IngSW.Tests.FanDevice;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
+import it.unibo.IngSW.ControlUnit.ControlUnitCommunicator;
+import it.unibo.IngSW.FanDevice.FanDeviceDecorator;
+import it.unibo.IngSW.FanDevice.SensorDataBuffer;
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
+import it.unibo.IngSW.Viewer.ViewerCommunicator;
 import it.unibo.IngSW.common.FanSpeed;
 import it.unibo.IngSW.common.SensorData;
 import it.unibo.IngSW.common.interfaces.IFanDevice;
+import it.unibo.IngSW.common.interfaces.ISensorData;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Semaphore;
@@ -15,131 +20,81 @@ import org.junit.Test;
 
 public class FanDeviceTest {
 
-	IFanDevice fd;
-	IActuator fan;
-	ArrayBlockingQueue<SensorData[]> dataBuffer=new ArrayBlockingQueue<>(20);
-	IComunication comm;
-	ISensor sensor;
+	private static final int VPORT=10001;
+	private static final int CUPORT=10002;
 	
+	private FanDeviceDecorator fandec;
+	private SensorDataBuffer buff=new SensorDataBuffer(100);
+	private ISensorData[] datatosend=new ISensorData[]{new SensorData("nome", "val")};
 	
-	@BeforeClass
-	public void setUpBeforeClass() throws Exception {
-		
-		sensor= new ISensor() {
-			boolean live=true;
-			Semaphore pause=new Semaphore(1);
+	@Test
+	public void test() {
+		Thread cu= new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
+				ControlUnitCommunicator cucomm=new ControlUnitCommunicator();
 				try {
-					do{
-						pause.acquire();
-						dataBuffer.put(new SensorData[] {new SensorData("sensorTest", "23")});
-						Thread.sleep(1000);
-						pause.release();
-					}while(live);
-				} catch (InterruptedException e) {
+					cucomm.connect("127.0.0.1", CUPORT);
+					cucomm.sendCommand("START");
+					ISensorData[] data=cucomm.receiveData();
+					assertTrue(datatosend.equals(data[0]));
+				} catch (Exception e) {
+					fail("eccezione non prevista");
 					e.printStackTrace();
 				}
 				
-			}
-			
-			@Override
-			public void resume() {
-				pause.release();
-			}
-			
-			@Override
-			public void pause() {
-				try {
-					pause.acquire();
-				} catch (InterruptedException e) {
-					e.printStackTrace();
+				try{
+				cucomm.receiveData();
+				fail("receive data doveva lanciare eccezione");
+				}catch (Exception e){
+					
 				}
 			}
 			
-			@Override
-			public void kill() {
-				live=false;				
-			}
-		};
+		});
 		
-		fan = new IActuator() {
+		Thread v1= new Thread(new Runnable() {
 			
 			@Override
-			public void setSpeed(FanSpeed speed) {
+			public void run() {
+				ViewerCommunicator vcomm=new ViewerCommunicator();
+				try {
+					vcomm.connect("127.0.0.1", VPORT);
+					ISensorData[] data=vcomm.receiveData();
+					assertTrue(datatosend.equals(data[0]));
+				} catch (Exception e) {
+					fail("eccezione non prevista");
+					e.printStackTrace();
+				}
 				
+				try{
+					vcomm.receiveData();
+					fail("receive data doveva lanciare eccezione");
+					}catch (Exception e){
+											
+				}
 			}
 			
-			@Override
-			public void incSpeed() {
-				
-			}
-			
-			@Override
-			public void decSpeed() {
-				
-			}
-		};
+		});
+		
+		
+		fandec=new FanDeviceDecorator(buff);
+		try {
+			fandec.connect(VPORT, CUPORT);
+			cu.start();
+			v1.start();
+			String s=fandec.receiveCommand();
+			assertTrue(s.equals("START"));
+			fandec.sendData(datatosend);
+			fandec.disconnect();
+		} catch (Exception e) {
+			fail("eccezione non prevista");
+			e.printStackTrace();
+		}
+		
+		
 	}
 
-	@AfterClass
-	public void tearDownAfterClass() throws Exception {
-	}
-
-	@Test
-	public void testAddSensor() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testDecSpeed() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIncSpeed() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testReceiveCommand() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testReceiveSensorData() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRemoveSensor() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSendDataSensorDataArray() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testStart() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testStop() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetSpeed() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSendDataISensorDataArray() {
-		fail("Not yet implemented");
-	}
 
 }
