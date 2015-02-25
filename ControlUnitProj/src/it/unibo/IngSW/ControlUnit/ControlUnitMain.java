@@ -136,6 +136,8 @@ public class ControlUnitMain {
 			}
 		});
 		
+		inputSenderT.start();
+		
 		ISensorData[] data;
 		do{
 			try{
@@ -153,7 +155,7 @@ public class ControlUnitMain {
 	}
 	
 	protected static void scrivi(String string) {
-		System.out.println(string);
+//		System.out.println(string);
 	}
 
 	private static void kill(){

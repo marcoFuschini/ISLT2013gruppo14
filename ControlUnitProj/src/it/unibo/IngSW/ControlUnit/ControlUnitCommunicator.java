@@ -43,7 +43,7 @@ public class ControlUnitCommunicator implements IControlUnitCommunicator {
 		if(msg==null){
 			throw new Exception("FanDeviceDisconnected");
 		}
-		System.out.println(msg);
+//		System.out.println(msg);
 		ISensorData[] data = JSONConverter.JSONToSensorData(msg);
 		return data;
 	}
