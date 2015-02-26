@@ -4,6 +4,8 @@ import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceDecorator;
 import it.unibo.IngSW.FanDevice.interfaces.ISensorDataBuffer;
 import it.unibo.IngSW.common.Command;
 import it.unibo.IngSW.common.FanSpeed;
+import it.unibo.IngSW.common.SensorData;
+import it.unibo.IngSW.common.SensorName;
 import it.unibo.IngSW.common.interfaces.IFanDevice;
 import it.unibo.IngSW.common.interfaces.ISensorData;
 
@@ -58,7 +60,17 @@ public class FanDeviceDecorator implements IFanDeviceDecorator {
 	}
 
 	public ISensorData[] getSensorData() throws InterruptedException{
-		return buffer.take();
+		ISensorData[] data=buffer.take();
+		ISensorData[] newData=new ISensorData[data.length+1];
+		for(int i=0;i<data.length;i++){
+			newData[i]=data[i];
+		}
+		if(active){
+			newData[newData.length-1]=new SensorData(SensorName.STATE.toString(), "1.0");
+		}else{
+			newData[newData.length-1]=new SensorData(SensorName.STATE.toString(), "0.0");
+		}
+		return newData;
 	}
 
 	public void incSpeed(){

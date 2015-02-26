@@ -1,7 +1,9 @@
 package it.unibo.IngSW.common;
-import javax.swing.JLabel;
-
 import it.unibo.IngSW.common.interfaces.IElementDisplay;
+
+import java.text.DecimalFormat;
+
+import javax.swing.JLabel;
 
 /**
  * @author Fabio
@@ -25,7 +27,7 @@ public class TachometerDisplay extends JLabel implements IElementDisplay {
 	}
 
 	public void refresh(){
-		this.setText("Speed: "+value);
+		this.setText("Speed: "+new DecimalFormat("#.##").format(value));
 	}
 
 	/**

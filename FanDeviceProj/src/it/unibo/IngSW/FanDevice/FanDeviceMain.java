@@ -20,9 +20,11 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
 public class FanDeviceMain {
 
 	private static final double TLIMIT1=27.0;
-	private static final double TLIMIT2=30.0;
+	private static final double TLIMIT2=32.0;
 	private static final int CUPORT=10001;
 	private static final int VPORT=10002;
+	
+	private static boolean run=true;
 	
 	public FanDeviceMain(){
 
@@ -61,22 +63,26 @@ public class FanDeviceMain {
 			@Override
 			public void run() {
 				try {
-					while(true){
-						Double temp=null;
-						Double oldTemp=null;
+					Double temp=null;
+					Double oldTemp=null;
+					while(run){
+						
 						ISensorData[] data =fd.getSensorData();
-						scrivi("dati ottenuti");
+					//	scrivi("dati ottenuti");
 						fd.sendData(data);
-						scrivi("dati inviati");
+					//	scrivi("dati inviati");
 						
 						for(ISensorData d:data){
-							if(d.getName().equals(SensorName.TEMPERATURE)){
+							
+							if(d.getName().equals(SensorName.TEMPERATURE.toString())){
 								temp=Double.parseDouble(d.getValue());
-								if(oldTemp!=null){
+								if(oldTemp!=null){		
 									if(oldTemp<=TLIMIT2 && temp>TLIMIT2){
-										fd.incSpeed();
-									}else if(oldTemp<=TLIMIT1 && temp>TLIMIT1){
+										System.out.println("autostop");
 										fd.stop();
+									}else if(oldTemp<=TLIMIT1 && temp>TLIMIT1){
+										System.out.println("autoinc");
+										fd.incSpeed();
 									}									
 								}
 								oldTemp=temp;
@@ -85,7 +91,7 @@ public class FanDeviceMain {
 						
 					}
 				} catch (Exception e) {
-					fd.disconnect();
+					//fd.disconnect();
 					e.printStackTrace();
 				}
 			}
@@ -93,7 +99,7 @@ public class FanDeviceMain {
 		}).start();
 		
 		try {
-			while(true){
+			while(run){
 			String cmd=fd.receiveCommand();
 			scrivi("ricevuto comando "+cmd);
 			Command command=Command.StringToCommand(cmd);
@@ -124,6 +130,10 @@ public class FanDeviceMain {
 		}
 		} catch (Exception e) {
 			fd.disconnect();
+			run=false;
+			tachPoller.kill();
+			termPoller.kill();
+			System.out.println("aaaaa");
 			e.printStackTrace();
 		}
 	}

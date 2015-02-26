@@ -143,9 +143,9 @@ public class ControlUnitMain {
 		do{
 			try{
 			data=controlUnit.receiveData();
-			scrivi("dati ricevuti ");
+		//	scrivi("dati ricevuti ");
 			controlUnit.updateData(data);
-			scrivi("dati scritti");
+		//	scrivi("dati scritti");
 			}catch (Exception e){
 				scrivi("eccezione catchata, muoio");
 				kill();

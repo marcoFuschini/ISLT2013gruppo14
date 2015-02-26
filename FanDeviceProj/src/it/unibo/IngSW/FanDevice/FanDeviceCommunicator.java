@@ -45,17 +45,16 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 		vPort=viewersPort;
 		new Thread(new Runnable(){
 			@Override
-			public void run() {
-				while(run){
+			public void run() {				
 					try {
-						int vid=comm.connect("server", viewersPort);
-						viewers.add(vid);
-						//run=false;
-						System.out.println("viewer "+vid+" connected");
+						while(run){
+							int vid=comm.connect("server", viewersPort);
+							viewers.add(vid);
+							System.out.println("viewer "+vid+" connected");
+						}
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
-				}
 			}
 		}).start();
 	}
@@ -102,7 +101,7 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 		String msg=JSONConverter.SensorDataToJSON(data);
 		comm.write(cuID, msg);
 		for(int i=0;i<viewers.size();i++){
-			System.out.println("viewer "+(i+1)+" of "+viewers.size());
+//			System.out.println("viewer "+(i+1)+" of "+viewers.size());
 			try{
 				comm.write(viewers.get(i),msg);
 				String s=comm.read(viewers.get(i));
@@ -113,7 +112,8 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 			}catch(Exception e){
 				viewers.remove(i);
 				i--;
-				e.printStackTrace();
+				System.out.println("Viewer disconnected");
+				//e.printStackTrace();
 			}
 		}
 	}

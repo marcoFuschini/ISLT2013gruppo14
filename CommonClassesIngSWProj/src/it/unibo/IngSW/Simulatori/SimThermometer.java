@@ -6,7 +6,7 @@ public class SimThermometer implements IThermometer {
 
 	private final double percLOW=0.8;
 	private final double percMID=0.4;
-	private final double percHIGH=-0.1;
+	private final double percHIGH=-0.2;
 	
 	private SimFanDevice fandev;
 	private double temp=0;
@@ -28,9 +28,11 @@ public class SimThermometer implements IThermometer {
 			break;
 		case HIGHSPEED:
 			temp+=percHIGH*increment;
-			break;			
+			break;	
+		default:
+			temp+=increment;
 		}
-		return temp+=increment;
+		return temp;
 	}
 
 }

@@ -1,7 +1,9 @@
 package it.unibo.IngSW.common;
-import javax.swing.JLabel;
-
 import it.unibo.IngSW.common.interfaces.IElementDisplay;
+
+import java.text.DecimalFormat;
+
+import javax.swing.JLabel;
 
 /**
  * @author Fabio
@@ -25,7 +27,7 @@ public class ThermometerDisplay extends JLabel implements IElementDisplay {
 	}
 
 	public void refresh(){
-		this.setText(value+"°C");
+		this.setText(new DecimalFormat("#.##").format(value)+"°C");
 	}
 
 	/**

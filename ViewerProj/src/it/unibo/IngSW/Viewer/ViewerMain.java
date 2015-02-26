@@ -89,9 +89,9 @@ public class ViewerMain {
 		while(display.isVisible()){
 			try {
 				data=viewer.receiveData();
-				scrivi("dati ricevuti");
+			//	scrivi("dati ricevuti");
 				viewer.updateData(data);
-				scrivi("dati scritti");
+			//	scrivi("dati scritti");
 			} catch (Exception e) {
 				scrivi("Receive data error");
 				e.printStackTrace();
