@@ -32,7 +32,7 @@ public class ControlUnitMain {
 
 	private static IControlUnit controlUnit;
 	private static Display display;
-	private static PhysicalButton[] pButtons = { new PhysicalButton(' ') };
+	private static PhysicalButton[] pButtons = { new PhysicalButton('s') };
 	private static IButton[] buttons = { new VirtualButton("Start"),
 			new HybridButton("Stop", pButtons[0]), new VirtualButton("LOW"),
 			new VirtualButton("MID"), new VirtualButton("HIGH"),
@@ -55,7 +55,11 @@ public class ControlUnitMain {
 		// sul frame
 		for (PhysicalButton pb : pButtons) {
 			display.addKeyListener(pb);
+			for(IButton b:buttons){
+				((JButton)b).addKeyListener(pb);
+			}
 		}
+		
 
 		// inserisco i componenti grafici nel panel
 		mainPane = new JPanel(new GridBagLayout());
@@ -95,6 +99,7 @@ public class ControlUnitMain {
 		display.setResizable(false);
 		display.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		display.pack();
+		display.setFocusable(true);
 		display.setVisible(true);
 
 	}

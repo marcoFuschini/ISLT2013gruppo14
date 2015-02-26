@@ -3,6 +3,7 @@ package it.unibo.IngSW.Viewer;
 import it.unibo.IngSW.Viewer.interfaces.IViewer;
 import it.unibo.IngSW.Viewer.interfaces.IViewerCommunicator;
 import it.unibo.IngSW.common.Display;
+import it.unibo.IngSW.common.StateDisplay;
 import it.unibo.IngSW.common.TachometerDisplay;
 import it.unibo.IngSW.common.ThermometerDisplay;
 import it.unibo.IngSW.common.interfaces.IElementDisplay;
@@ -29,7 +30,7 @@ public class ViewerMain {
 	private static IViewer viewer;
 	private static JPanel mainPane;
 	private static Display display;
-	private static IElementDisplay[] displayEls = {new TachometerDisplay(),new ThermometerDisplay()};
+	private static IElementDisplay[] displayEls = {new StateDisplay(),new TachometerDisplay(),new ThermometerDisplay()};
 
 	private static void scrivi(String s){
 		System.out.println(s);

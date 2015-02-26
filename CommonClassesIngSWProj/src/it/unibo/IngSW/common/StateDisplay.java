@@ -1,4 +1,6 @@
 package it.unibo.IngSW.common;
+import javax.swing.JLabel;
+
 import it.unibo.IngSW.common.interfaces.IElementDisplay;
 
 /**
@@ -6,10 +8,13 @@ import it.unibo.IngSW.common.interfaces.IElementDisplay;
  * @version 1.0
  * @created 21-feb-2015 16.50.34
  */
-public class StateDisplay implements IElementDisplay {
+public class StateDisplay extends JLabel implements IElementDisplay {
 
+	private boolean state=false;
+	
 	public StateDisplay(){
-
+		state=false;
+		refresh();
 	}
 
 	public void finalize() throws Throwable {
@@ -17,11 +22,15 @@ public class StateDisplay implements IElementDisplay {
 	}
 
 	public String getName(){
-		return "";
+		return SensorName.STATE.toString();
 	}
 
 	public void refresh(){
-
+		if(state){
+			this.setText("State: ON ");
+		}else{
+			this.setText("State: OFF");
+		}
 	}
 
 	/**
@@ -29,7 +38,11 @@ public class StateDisplay implements IElementDisplay {
 	 * @param value
 	 */
 	public void setValue(String value){
-
+		if(Double.parseDouble(value)==0.0){
+			state=false;
+		}else{
+			state=true;
+		};
 	}
 
 }
