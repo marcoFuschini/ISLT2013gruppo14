@@ -49,10 +49,12 @@ public class FanDeviceDecorator implements IFanDeviceDecorator {
 		if(active){
 			switch(currentSpeed){
 				case HIGHSPEED:
-					fd.setSpeed(FanSpeed.MEDIUMSPEED);
+					currentSpeed=FanSpeed.MEDIUMSPEED;
+					fd.setSpeed(currentSpeed);
 					break;
 				case MEDIUMSPEED:
-					fd.setSpeed(FanSpeed.LOWSPEED);
+					currentSpeed=FanSpeed.LOWSPEED;
+					fd.setSpeed(currentSpeed);
 					break;
 				default: 
 			}
@@ -77,10 +79,12 @@ public class FanDeviceDecorator implements IFanDeviceDecorator {
 		if(active){
 			switch(currentSpeed){
 				case LOWSPEED:
-					fd.setSpeed(FanSpeed.MEDIUMSPEED);
+					currentSpeed=FanSpeed.MEDIUMSPEED;
+					fd.setSpeed(currentSpeed);
 					break;
 				case MEDIUMSPEED:
-					fd.setSpeed(FanSpeed.HIGHSPEED);
+					currentSpeed=FanSpeed.HIGHSPEED;
+					fd.setSpeed(currentSpeed);
 					break;
 				default: 
 			}

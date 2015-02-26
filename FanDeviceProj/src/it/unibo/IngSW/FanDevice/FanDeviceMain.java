@@ -88,16 +88,16 @@ public class FanDeviceMain {
 								oldTemp=temp;
 							}
 						}
-						
 					}
 				} catch (Exception e) {
 					//fd.disconnect();
 					e.printStackTrace();
 				}
+				scrivi("exiting data thread");
 			}
 			
 		}).start();
-		
+	
 		try {
 			while(run){
 			String cmd=fd.receiveCommand();
@@ -133,7 +133,6 @@ public class FanDeviceMain {
 			run=false;
 			tachPoller.kill();
 			termPoller.kill();
-			System.out.println("aaaaa");
 			e.printStackTrace();
 		}
 	}
