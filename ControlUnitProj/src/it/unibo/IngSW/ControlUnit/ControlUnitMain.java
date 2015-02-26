@@ -127,6 +127,7 @@ public class ControlUnitMain {
 				do {
 
 					try {
+						scrivi("ascolto per comandi");
 						cmd = controlUnit.readCommand();
 						scrivi("ricevuto comando: "+cmd);
 //						json = JSONConverter.commandToJSON(cmd);
@@ -161,7 +162,7 @@ public class ControlUnitMain {
 	}
 	
 	protected static void scrivi(String string) {
-//		System.out.println(string);
+		System.out.println(string);
 	}
 
 	private static void kill(){
