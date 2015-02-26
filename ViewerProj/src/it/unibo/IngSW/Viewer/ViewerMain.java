@@ -33,7 +33,7 @@ public class ViewerMain {
 	private static IElementDisplay[] displayEls = {new StateDisplay(),new TachometerDisplay(),new ThermometerDisplay()};
 
 	private static void scrivi(String s){
-		System.out.println(s);
+		//System.out.println(s);
 	}
 	private static void creaGUI() {
 		// IMPLEMENTAZIONE SPECIFICA
@@ -79,11 +79,11 @@ public class ViewerMain {
 			viewer.connect(args[0],Integer.parseInt(args[1]));
 		} catch (NumberFormatException e) {
 			scrivi("Porta non valida");
-			e.printStackTrace();
+//			e.printStackTrace();
 			return;
 		} catch (Exception e) {
 			scrivi("Connection timeout");
-			e.printStackTrace();
+//			e.printStackTrace();
 			esci();
 		}
 		ISensorData[] data;
@@ -95,7 +95,7 @@ public class ViewerMain {
 			//	scrivi("dati scritti");
 			} catch (Exception e) {
 				scrivi("Receive data error");
-				e.printStackTrace();
+//				e.printStackTrace();
 				esci();
 			}			
 		}
@@ -103,7 +103,7 @@ public class ViewerMain {
 				viewer.diconnect();
 			} catch (Exception e) {
 				scrivi("Disconnection error");
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 			esci();//mi assicuro che venga chiusa l'interfaccia grafica a seguito di errori
 	}

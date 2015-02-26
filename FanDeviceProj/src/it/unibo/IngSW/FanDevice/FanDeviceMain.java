@@ -1,4 +1,5 @@
 package it.unibo.IngSW.FanDevice;
+
 import it.unibo.IngSW.FanDevice.interfaces.IFanDeviceDecorator;
 import it.unibo.IngSW.FanDevice.interfaces.ISensor;
 import it.unibo.IngSW.FanDevice.interfaces.ISensorDataBuffer;
@@ -19,14 +20,14 @@ import it.unibo.IngSW.common.interfaces.ISensorData;
  */
 public class FanDeviceMain {
 
-	private static final double TLIMIT1=27.0;
-	private static final double TLIMIT2=32.0;
-	private static final int CUPORT=10001;
-	private static final int VPORT=10002;
-	
-	private static boolean run=true;
-	
-	public FanDeviceMain(){
+	private static final double TLIMIT1 = 27.0;
+	private static final double TLIMIT2 = 32.0;
+	private static final int CUPORT = 10001;
+	private static final int VPORT = 10002;
+
+	private static boolean run = true;
+
+	public FanDeviceMain() {
 
 	}
 
@@ -38,108 +39,116 @@ public class FanDeviceMain {
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args){
-		ISensorDataBuffer buffer=new SensorDataBuffer(2048);
-		IFanDevice fan=new SimFanDevice();
-		IFanDeviceDecorator fd=new FanDeviceDecorator(buffer,fan);
-		ISensor tach=new Sensor(new SimTachometer((SimFanDevice)fan), SensorName.SPEED.toString());
-		ISensor term=new Sensor(new SimThermometer((SimFanDevice)fan,20,1), SensorName.TEMPERATURE.toString());
-		ISensor[] tachArray=new ISensor[]{tach};
-		ISensor[] termArray=new ISensor[]{term};
-		ISensorPoller tachPoller=new SensorPoller(tachArray, buffer, 0);
-		ISensorPoller termPoller=new SensorPoller(termArray, buffer, 1500);
+	public static void main(String[] args) {
+		System.out.println("Porte di ascolto: ControlUnit="+CUPORT+" Viewers="+VPORT);
+		ISensorDataBuffer buffer = new SensorDataBuffer(2048);
+		IFanDevice fan = new SimFanDevice();
+		IFanDeviceDecorator fd = new FanDeviceDecorator(buffer, fan);
+		ISensor tach = new Sensor(new SimTachometer((SimFanDevice) fan),
+				SensorName.SPEED.toString());
+		ISensor term = new Sensor(
+				new SimThermometer((SimFanDevice) fan, 20, 1),
+				SensorName.TEMPERATURE.toString());
+		ISensor[] tachArray = new ISensor[] { tach };
+		ISensor[] termArray = new ISensor[] { term };
+		ISensorPoller tachPoller = new SensorPoller(tachArray, buffer, 0);
+		ISensorPoller termPoller = new SensorPoller(termArray, buffer, 1500);
 		try {
 			scrivi("Mi metto in ascolto");
-			fd.connect(VPORT,CUPORT);
-			scrivi("CU connected");
+			fd.connect(VPORT, CUPORT);
+			System.out.println("CU connected");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		new Thread(tachPoller).start();
 		new Thread(termPoller).start();
-		new Thread(new Runnable(){
+		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				try {
-					Double temp=null;
-					Double oldTemp=null;
-					while(run){
-						
-						ISensorData[] data =fd.getSensorData();
-					//	scrivi("dati ottenuti");
+					Double temp = null;
+					Double oldTemp = null;
+					while (run) {
+
+						ISensorData[] data = fd.getSensorData();
+						scrivi("dati ottenuti");
 						fd.sendData(data);
-					//	scrivi("dati inviati");
-						
-						for(ISensorData d:data){
-							
-							if(d.getName().equals(SensorName.TEMPERATURE.toString())){
-								temp=Double.parseDouble(d.getValue());
-								if(oldTemp!=null){		
-									if(oldTemp<=TLIMIT2 && temp>TLIMIT2){
+						scrivi("dati inviati");
+
+						for (ISensorData d : data) {
+
+							if (d.getName().equals(
+									SensorName.TEMPERATURE.toString())) {
+								temp = Double.parseDouble(d.getValue());
+								if (oldTemp != null) {
+									if (oldTemp <= TLIMIT2 && temp > TLIMIT2) {
 										System.out.println("autostop");
 										fd.stop();
-									}else if(oldTemp<=TLIMIT1 && temp>TLIMIT1){
+									} else if (oldTemp <= TLIMIT1
+											&& temp > TLIMIT1) {
 										System.out.println("autoinc");
 										fd.incSpeed();
-									}									
+									}
 								}
-								oldTemp=temp;
+								oldTemp = temp;
 							}
 						}
 					}
 				} catch (Exception e) {
-					//fd.disconnect();
-					e.printStackTrace();
+//					e.printStackTrace();
 				}
 				scrivi("exiting data thread");
 			}
-			
+
 		}).start();
-	
+
 		try {
-			while(run){
-			String cmd=fd.receiveCommand();
-			scrivi("ricevuto comando "+cmd);
-			Command command=Command.StringToCommand(cmd);
-			switch(command){
-			case START:
-				fd.start();
-				break;
-			case STOP:
-				fd.stop();
-				break;
-			case INCSPEED:
-				fd.incSpeed();
-				break;
-			case DECSPEED:
-				fd.decSpeed();
-				break;
-			case LOWSPEED:
-				fd.setSpeed(FanSpeed.LOWSPEED);
-				break;
-			case MEDIUMSPEED:
-				fd.setSpeed(FanSpeed.MEDIUMSPEED);
-				break;
-			case HIGHSPEED:
-				fd.setSpeed(FanSpeed.HIGHSPEED);
-				break;
-			default:
+			while (run) {
+				String cmd = fd.receiveCommand();
+				scrivi("ricevuto comando " + cmd);
+				Command command = Command.StringToCommand(cmd);
+				switch (command) {
+				case START:
+					fd.start();
+					break;
+				case STOP:
+					fd.stop();
+					break;
+				case INCSPEED:
+					fd.incSpeed();
+					break;
+				case DECSPEED:
+					fd.decSpeed();
+					break;
+				case LOWSPEED:
+					fd.setSpeed(FanSpeed.LOWSPEED);
+					break;
+				case MEDIUMSPEED:
+					fd.setSpeed(FanSpeed.MEDIUMSPEED);
+					break;
+				case HIGHSPEED:
+					fd.setSpeed(FanSpeed.HIGHSPEED);
+					break;
+				default:
+				}
 			}
-		}
 		} catch (Exception e) {
 			fd.disconnect();
-			run=false;
+			run = false;
 			tachPoller.kill();
 			termPoller.kill();
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
-		scrivi("Main Thread terminato");
+		while(Thread.activeCount()>2){
+			scrivi("Thread attivi="+Thread.activeCount());
+		}
+		scrivi("Main Thread terminato con " + Thread.activeCount() + " attivi");
+		System.exit(0);		
 	}
 
 	private static void scrivi(String string) {
-		System.out.println(string);
+		//System.out.println(string);
 	}
 
 }

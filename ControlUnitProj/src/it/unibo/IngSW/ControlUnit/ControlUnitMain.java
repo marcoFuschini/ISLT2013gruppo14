@@ -111,10 +111,10 @@ public class ControlUnitMain {
 		try {
 			controlUnit.connect(args[0],Integer.parseInt(args[1]));
 		} catch (NumberFormatException e1) {
-			e1.printStackTrace();
+//			e1.printStackTrace();
 			return;
 		} catch (Exception e1) {
-			e1.printStackTrace();
+//			e1.printStackTrace();
 			return;
 		}
 		creaGUI();
@@ -135,7 +135,7 @@ public class ControlUnitMain {
 						controlUnit.sendCommand(json);
 						scrivi("comando inviato");
 					} catch (Exception e) {
-						scrivi("eccezione catchata, muoio");
+						scrivi("eccezione catchata inputthread, muoio");
 						kill();
 						e.printStackTrace();
 					}
@@ -153,16 +153,22 @@ public class ControlUnitMain {
 			controlUnit.updateData(data);
 		//	scrivi("dati scritti");
 			}catch (Exception e){
-				scrivi("eccezione catchata, muoio");
+				scrivi("eccezione catchata data thread, muoio");
 				kill();
 				e.printStackTrace();
 			}
 		}while(datReceiverRun&&display.isVisible());
 		kill();
+		
+		while(Thread.activeCount()>2){
+			scrivi("Thread attivi="+Thread.activeCount());
+		}
+		scrivi("Main Thread terminato con " + Thread.activeCount() + " attivi");
+		System.exit(0);	
 	}
 	
 	protected static void scrivi(String string) {
-		System.out.println(string);
+		//System.out.println(string);
 	}
 
 	private static void kill(){
@@ -173,6 +179,7 @@ public class ControlUnitMain {
 		} catch (Exception e) {
 		}
 		display.dispose();
+		
 	}
 
 }

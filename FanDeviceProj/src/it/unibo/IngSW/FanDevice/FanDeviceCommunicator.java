@@ -53,7 +53,7 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 							System.out.println("viewer "+vid+" connected");
 						}
 					} catch (Exception e) {
-						e.printStackTrace();
+//						e.printStackTrace();
 					}
 					scrivi("thread connect viewers terminated");
 			}
@@ -66,31 +66,29 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 			comm.disconnect(cuID);
 			scrivi("cuDisconnected");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 		for (Integer i : viewers){
 			try {
 				comm.disconnect(i);
 				scrivi("v disconnected");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				scrivi("v disconnected with exception");
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 		}
 		try {
 			comm.closeServer(vPort);
 			scrivi("vport closed");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			scrivi("vport closed with exception");
 		}
 		try{
 			comm.closeServer(cuPort);
 			scrivi("cuport closed");
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 
@@ -130,7 +128,7 @@ public class FanDeviceCommunicator implements IFanDeviceCommunicator {
 	}
 	
 	private void scrivi(String s){
-		System.out.println(s);
+//		System.out.println(s);
 	}
 
 }

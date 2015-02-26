@@ -74,7 +74,6 @@ public class ControlCmdConsole implements IControlCmdConsole {
 	}
 
 	public boolean start() {
-		System.out.println("inserisco start nel buffer");
 		try {
 			buffer.put(Command.START.toString());
 		} catch (InterruptedException e) {

@@ -37,7 +37,7 @@ public class SensorPoller implements ISensorPoller {
 			try {
 				Thread.sleep(dt);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 			ISensorData[] data=new SensorData[sensors.length];
 			for(int i=0;i<sensors.length;i++){
@@ -46,10 +46,10 @@ public class SensorPoller implements ISensorPoller {
 			try {
 				buf.put(data);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
 			}
 		}
-		System.out.println("SensorPoller terminato");
+//		System.out.println("SensorPoller terminato");
 	}
 
 }

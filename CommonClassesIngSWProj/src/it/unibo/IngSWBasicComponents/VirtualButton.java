@@ -20,7 +20,7 @@ public class VirtualButton extends JButton implements IButton {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				synchronized (this) {
-					System.out.println(s + " premuto");
+//					System.out.println(s + " premuto");
 					pressed = true;
 
 				}

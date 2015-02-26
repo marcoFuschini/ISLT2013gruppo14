@@ -34,7 +34,7 @@ public class InputPoller implements IInputPoller {
 	}
 
 	public void run() {
-		System.out.println("INPUTPOLLER: inizio loop");
+//		System.out.println("INPUTPOLLER: inizio loop");
 		do {
 			if (buttons[0].isPressed()) {
 				if (!controlCmdConsole.start()) {
@@ -82,7 +82,8 @@ public class InputPoller implements IInputPoller {
 			}
 		} while (run);
 		
-		System.out.println("INPUTPOLLER: chiudo");
+		controlCmdConsole.stop();
+//		System.out.println("INPUTPOLLER: chiudo");
 	}
 
 }
