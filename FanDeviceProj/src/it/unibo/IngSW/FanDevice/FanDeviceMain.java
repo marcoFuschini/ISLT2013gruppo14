@@ -135,6 +135,7 @@ public class FanDeviceMain {
 			termPoller.kill();
 			e.printStackTrace();
 		}
+		scrivi("Main Thread terminato");
 	}
 
 	private static void scrivi(String string) {

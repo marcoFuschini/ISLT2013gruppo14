@@ -49,6 +49,7 @@ public class SensorPoller implements ISensorPoller {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("SensorPoller terminato");
 	}
 
 }
